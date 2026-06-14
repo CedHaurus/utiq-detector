@@ -100,15 +100,13 @@ async function main() {
     uLetter.className = 'u-letter red';
     statusCard.className = 'status-card detected';
     statusIcon.textContent = '🔴';
-    statusText.innerHTML = '<strong>' + escapeHtml(siteLabel) + '</strong>' +
-      escapeHtml(t('popupDetected', 'uses Utiq (telco tracking)'));
+    setStatusText(statusText, siteLabel, t('popupDetected', 'uses Utiq (telco tracking)'));
     optoutLink.style.display = 'block';
   } else if (state === 'clean') {
     uLetter.className = 'u-letter green';
     statusCard.className = 'status-card clean';
     statusIcon.textContent = '🟢';
-    statusText.innerHTML = '<strong>' + escapeHtml(siteLabel) + '</strong>' +
-      escapeHtml(t('popupClean', 'does not use Utiq'));
+    setStatusText(statusText, siteLabel, t('popupClean', 'does not use Utiq'));
   } else {
     uLetter.className = 'u-letter gray';
     statusCard.className = 'status-card';
@@ -121,8 +119,8 @@ async function main() {
   const alreadyReported = ((cacheReported && cacheReported['reported_domains']) || []).includes(reportDomain);
 
   if (isDetected && isReportableDomain(reportDomain) && !meta.inList && !alreadyReported) {
-    reportPrompt.innerHTML = t('popupReportPrompt',
-      '🔍 This site is not in our list yet.<br><strong>Help us reference it!</strong>');
+    setRichText(reportPrompt, t('popupReportPrompt',
+      '🔍 This site is not in our list yet.<br><strong>Help us reference it!</strong>'));
     reportBtn.textContent = t('popupReportBtn', 'Report this site');
     reportBlock.style.display = 'block';
 
@@ -184,10 +182,32 @@ function isReportableDomain(host) {
   return /^[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(host);
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
+// Status line: bold site label + plain description, built with DOM nodes (no innerHTML).
+function setStatusText(el, label, desc) {
+  el.textContent = '';
+  const s = document.createElement('strong');
+  s.textContent = label;
+  el.appendChild(s);
+  el.appendChild(document.createTextNode(desc));
+}
+
+// Render a localized message that may contain <br> and <strong> safely (no innerHTML).
+function stripTags(s) { return s.replace(/<[^>]*>/g, ''); }
+function setRichText(el, msg) {
+  el.textContent = '';
+  msg.split(/<br\s*\/?>/i).forEach((seg, i) => {
+    if (i) el.appendChild(document.createElement('br'));
+    const re = /<strong>(.*?)<\/strong>/gi;
+    let last = 0, m;
+    while ((m = re.exec(seg)) !== null) {
+      if (m.index > last) el.appendChild(document.createTextNode(stripTags(seg.slice(last, m.index))));
+      const s = document.createElement('strong');
+      s.textContent = stripTags(m[1]);
+      el.appendChild(s);
+      last = re.lastIndex;
+    }
+    if (last < seg.length) el.appendChild(document.createTextNode(stripTags(seg.slice(last))));
+  });
 }
 
 document.addEventListener('DOMContentLoaded', main);
