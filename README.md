@@ -77,4 +77,6 @@ build.sh             Builds the Chrome/Firefox packages into dist/
 
 ## License
 
-Site data: CC BY 4.0 — *Utiq Tracker — christopheboutry.com*.
+Extension code: MIT — see [LICENSE](LICENSE).
+
+Site data (the reference list): CC BY 4.0 — *Utiq Tracker — christopheboutry.com*.
