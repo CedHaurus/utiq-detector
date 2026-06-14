@@ -57,19 +57,19 @@ async function main() {
   const reportPrompt = document.getElementById('report-prompt');
   const reportFeedback = document.getElementById('report-feedback');
 
-  // Version dans le footer
+  // Version in the footer
   const manifest = api.runtime.getManifest();
   versionEl.textContent = 'v' + manifest.version;
 
-  // Onglet actif -> hostname (minuscules, sans port). Jamais d'URL/chemin/query.
+  // Active tab -> hostname (lowercase, no port). Never any URL/path/query.
   const tab = await getActiveTab();
   let hostname = '';
   try { hostname = (new URL(tab.url).hostname || '').toLowerCase(); } catch (e) {}
-  const siteLabel = hostname || t('popupUnknownSite', 'ce site');
-  // Domaine à signaler : on retire le www. superflu.
+  const siteLabel = hostname || t('popupUnknownSite', 'this site');
+  // Domain to report: strip the redundant www.
   const reportDomain = hostname.replace(/^www\./, '');
 
-  // État + config
+  // State + config
   const [stateResp, config, cache] = await Promise.all([
     sendMessage({ action: 'get_state', tabId: tab ? tab.id : null }),
     sendMessage({ action: 'get_config' }),
@@ -81,54 +81,54 @@ async function main() {
   const trackerUrl = (config && config.trackerUrl) || 'https://utiq-tracker.online';
   const optoutUrl  = (config && config.optoutUrl)  || 'https://utiq-tracker.online/opt-out';
 
-  // Compteur de sites
+  // Sites count
   const cacheData = cache && cache['utiq_list_cache'];
   if (cacheData && cacheData.count) {
     cacheInfo.textContent = cacheData.count + ' ' + t('popupSitesLabel', 'sites');
   }
 
-  // Liens
-  moreInfoLink.textContent = t('popupMoreInfo', 'Plus d\'infos sur Utiq Tracker →');
+  // Links
+  moreInfoLink.textContent = t('popupMoreInfo', 'More info on Utiq Tracker →');
   moreInfoLink.href = trackerUrl + (hostname ? ('?q=' + encodeURIComponent(hostname)) : '');
-  optoutLink.textContent = t('popupOptout', 'Se désinscrire d\'Utiq →');
+  optoutLink.textContent = t('popupOptout', 'Opt out of Utiq →');
   optoutLink.href = optoutUrl;
 
   const isDetected = (state === 'detected' || state === 'detected_net');
 
-  // Rendu selon l'état
+  // Render according to state
   if (isDetected) {
     uLetter.className = 'u-letter red';
     statusCard.className = 'status-card detected';
     statusIcon.textContent = '🔴';
     statusText.innerHTML = '<strong>' + escapeHtml(siteLabel) + '</strong>' +
-      escapeHtml(t('popupDetected', 'utilise Utiq (pistage opérateur)'));
+      escapeHtml(t('popupDetected', 'uses Utiq (telco tracking)'));
     optoutLink.style.display = 'block';
   } else if (state === 'clean') {
     uLetter.className = 'u-letter green';
     statusCard.className = 'status-card clean';
     statusIcon.textContent = '🟢';
     statusText.innerHTML = '<strong>' + escapeHtml(siteLabel) + '</strong>' +
-      escapeHtml(t('popupClean', 'n\'utilise pas Utiq'));
+      escapeHtml(t('popupClean', 'does not use Utiq'));
   } else {
     uLetter.className = 'u-letter gray';
     statusCard.className = 'status-card';
     statusIcon.textContent = '⏳';
-    statusText.textContent = t('popupUnknown', 'Analyse en cours…');
+    statusText.textContent = t('popupUnknown', 'Analysing…');
   }
 
-  // Bloc de signalement : site détecté activement mais absent de la liste.
+  // Report block: site actively detected but absent from the list.
   const cacheReported = await storageGet('reported_domains');
   const alreadyReported = ((cacheReported && cacheReported['reported_domains']) || []).includes(reportDomain);
 
   if (isDetected && isReportableDomain(reportDomain) && !meta.inList && !alreadyReported) {
     reportPrompt.innerHTML = t('popupReportPrompt',
-      '🔍 Ce site n\'est pas encore dans notre liste.<br><strong>Aidez-nous à le référencer !</strong>');
-    reportBtn.textContent = t('popupReportBtn', 'Signaler ce site');
+      '🔍 This site is not in our list yet.<br><strong>Help us reference it!</strong>');
+    reportBtn.textContent = t('popupReportBtn', 'Report this site');
     reportBlock.style.display = 'block';
 
     reportBtn.addEventListener('click', async () => {
       reportBtn.disabled = true;
-      reportBtn.textContent = t('popupReporting', 'Envoi…');
+      reportBtn.textContent = t('popupReporting', 'Sending…');
 
       const res = await sendMessage({
         action: 'submit_report',
@@ -142,45 +142,45 @@ async function main() {
       switch (res && res.status) {
         case 'ok':
         case 'pending':
-          reportFeedback.textContent = t('popupReported', '✓ Merci ! Ce site sera bientôt ajouté à la liste.');
+          reportFeedback.textContent = t('popupReported', '✓ Thanks! This site will soon be added to the list.');
           reportFeedback.className = 'report-feedback success';
           break;
         case 'known':
         case 'already_reported':
-          reportFeedback.textContent = t('popupKnown', '✓ Ce site est déjà en cours d\'ajout.');
+          reportFeedback.textContent = t('popupKnown', '✓ This site is already being added.');
           reportFeedback.className = 'report-feedback success';
           break;
         case 'invalid':
-          // Domaine rejeté par le serveur : message neutre, pas de nouvelle tentative.
-          reportFeedback.textContent = t('popupReportInvalid', 'Ce site ne peut pas être signalé.');
+          // Domain rejected by the server: neutral message, no retry.
+          reportFeedback.textContent = t('popupReportInvalid', "This site can't be reported.");
           reportFeedback.className = 'report-feedback error';
           break;
         case 'rate_limited':
-          // 429 : trop de signalements, pas de retry automatique.
-          reportFeedback.textContent = t('popupReportRateLimited', 'Trop de signalements, réessaie plus tard.');
+          // 429: too many reports, no automatic retry.
+          reportFeedback.textContent = t('popupReportRateLimited', 'Too many reports, try again later.');
           reportFeedback.className = 'report-feedback error';
           break;
         default:
-          // Erreur réseau / timeout : on autorise une nouvelle tentative manuelle.
-          reportFeedback.textContent = t('popupReportError', 'Erreur, réessaie dans quelques instants.');
+          // Network error / timeout: allow a manual retry.
+          reportFeedback.textContent = t('popupReportError', 'Error, please try again in a moment.');
           reportFeedback.className = 'report-feedback error';
           reportBtn.style.display = 'block';
           reportBtn.disabled = false;
-          reportBtn.textContent = t('popupReportBtn', 'Signaler ce site');
+          reportBtn.textContent = t('popupReportBtn', 'Report this site');
       }
     });
   }
 }
 
-// Pré-filtre client : n'envoyer au serveur que des FQDN publics plausibles
-// (économise le quota de rate limit, évite les "invalid" inutiles).
+// Client-side pre-filter: only send plausible public FQDNs to the server
+// (saves the rate-limit quota, avoids pointless "invalid" responses).
 function isReportableDomain(host) {
   if (!host) return false;
   if (host.length < 5) return false;
   if (host === 'localhost' || host.endsWith('.local')) return false;
   if (host.includes(':')) return false;                  // IPv6 / port
   if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host)) return false; // IPv4
-  // au moins un point + TLD alphabétique
+  // at least one dot + alphabetic TLD
   return /^[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(host);
 }
 

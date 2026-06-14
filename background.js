@@ -1,6 +1,6 @@
 /* Utiq Detector — Service Worker (MV3, Chrome + Firefox) */
 
-// Shim cross-browser : Firefox expose `browser` (Promise), Chrome `chrome`.
+// Cross-browser shim: Firefox exposes `browser` (Promise), Chrome `chrome`.
 const api = (typeof browser !== 'undefined') ? browser : chrome;
 
 const LIST_URL      = 'https://utiq-tracker.online/api/v1/sites.json';
@@ -12,7 +12,7 @@ const CACHE_KEY     = 'utiq_list_cache';
 const REPORTED_KEY  = 'reported_domains';
 const CACHE_TTL     = 6 * 60 * 60 * 1000; // 6h
 
-// URLs réseau (couche 3) qui trahissent Utiq.
+// Network URLs (layer 3) that reveal Utiq.
 const NET_PATTERNS = [
   'utiq-aws.net',
   'utiqLoader',
@@ -22,14 +22,14 @@ const NET_PATTERNS = [
   'adtechservices.de'
 ];
 
-// Domaines de l'extension elle-même : jamais flaggés (site source + son opt-out).
+// The extension's own domains: never flagged (source site + its opt-out).
 const SELF_HOSTS = ['utiq-tracker.online'];
 function isSelfHost(host) {
   host = (host || '').toLowerCase();
   return SELF_HOSTS.some(h => host === h || host.endsWith('.' + h));
 }
 
-// État en mémoire (perdu si le SW s'arrête — on le reconstruit à la navigation).
+// In-memory state (lost when the SW stops — rebuilt on navigation).
 const tabStates = {}; // { [tabId]: 'unknown' | 'detected' | 'detected_net' | 'clean' }
 const tabMeta   = {}; // { [tabId]: { inList: bool, detectedBy: string|null } }
 
@@ -60,7 +60,7 @@ const ICONS = {
   }
 };
 
-/* ---------- Liste centralisée (couche 1) ---------- */
+/* ---------- Centralized list (layer 1) ---------- */
 
 async function fetchList() {
   for (const url of [LIST_URL, LIST_FALLBACK]) {
@@ -71,7 +71,7 @@ async function fetchList() {
       const sites = data.sites || data; // sites.json -> {sites:[]}, fallback -> []
       if (Array.isArray(sites) && sites.length) return sites;
     } catch (e) {
-      // on tente l'URL suivante
+      // try the next URL
     }
   }
   return null;
@@ -96,14 +96,14 @@ async function getCachedDomains() {
     const fresh = await refreshList();
     return fresh ? fresh.domains : [];
   }
-  // Périmé -> on rafraîchit en arrière-plan mais on répond avec le cache.
+  // Stale -> refresh in the background but answer with the cache.
   if (Date.now() - cache.timestamp > CACHE_TTL) {
     refreshList();
   }
   return cache.domains;
 }
 
-// Teste le hostname et ses parents : www.lemonde.fr -> lemonde.fr.
+// Test the hostname and its parents: www.lemonde.fr -> lemonde.fr.
 function isKnownDomain(hostname, domains) {
   if (!hostname) return false;
   const host = hostname.toLowerCase().replace(/\.$/, '');
@@ -116,7 +116,7 @@ function isKnownDomain(hostname, domains) {
   return false;
 }
 
-/* ---------- Gestion des onglets / icône ---------- */
+/* ---------- Tab / icon handling ---------- */
 
 function setTabState(tabId, state) {
   tabStates[tabId] = state;
@@ -124,9 +124,9 @@ function setTabState(tabId, state) {
   try {
     api.action.setIcon({ tabId, path });
   } catch (e) {
-    // l'onglet peut avoir disparu
+    // the tab may have gone away
   }
-  // Badge "!" rouge pour attirer l'attention quand Utiq est détecté.
+  // Red "!" badge to draw attention when Utiq is detected.
   try {
     const detected = (state === 'detected' || state === 'detected_net');
     api.action.setBadgeText({ tabId, text: detected ? '!' : '' });
@@ -139,7 +139,7 @@ function sendToTab(tabId, message) {
     const p = api.tabs.sendMessage(tabId, message);
     if (p && typeof p.catch === 'function') p.catch(() => {});
   } catch (e) {
-    // pas de content script sur cet onglet (page interne, etc.)
+    // no content script on this tab (internal page, etc.)
   }
 }
 
@@ -151,28 +151,28 @@ async function checkTabByUrl(tabId, url) {
     return;
   }
 
-  // Reset meta pour la nouvelle navigation.
+  // Reset meta for the new navigation.
   tabMeta[tabId] = { inList: false, detectedBy: null };
 
-  // Notre propre site : toujours considéré comme propre, jamais analysé.
+  // Our own site: always treated as clean, never analysed.
   if (isSelfHost(hostname)) {
     setTabState(tabId, 'clean');
     return;
   }
 
-  // Icône grise par défaut, en attendant l'analyse.
+  // Gray icon by default, while waiting for the analysis.
   setTabState(tabId, 'unknown');
 
   const domains = await getCachedDomains();
   if (isKnownDomain(hostname, domains)) {
     tabMeta[tabId].inList = true;
     setTabState(tabId, 'detected');
-    // Pas de toast : juste signaler au content script qu'il est déjà listé.
+    // No toast here: just tell the content script it is already listed.
     sendToTab(tabId, { action: 'already_in_list' });
   }
 }
 
-/* ---------- Signalement (couche communautaire) ---------- */
+/* ---------- Reporting (community layer) ---------- */
 
 async function submitReport(domain, detectedBy) {
   const result = await api.storage.local.get(REPORTED_KEY);
@@ -180,10 +180,10 @@ async function submitReport(domain, detectedBy) {
   if (reported.includes(domain)) return { status: 'already_reported' };
 
   const manifest = api.runtime.getManifest();
-  // detected_by doit matcher ^[a-z0-9_]{1,32}$ côté serveur, sinon -> "unknown".
+  // detected_by must match ^[a-z0-9_]{1,32}$ server-side, otherwise -> "unknown".
   const detected = /^[a-z0-9_]{1,32}$/.test(detectedBy || '') ? detectedBy : 'unknown';
 
-  // Timeout 5 s pour gérer le hors-ligne / serveur lent sans bloquer l'UI.
+  // 5s timeout to handle offline / slow server without blocking the UI.
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 5000);
   try {
@@ -197,16 +197,16 @@ async function submitReport(domain, detectedBy) {
       }),
       signal: controller.signal
     });
-    // 429 renvoie status:"invalid" côté serveur -> on le distingue pour l'UI.
+    // 429 returns status:"invalid" server-side -> distinguish it for the UI.
     if (res.status === 429) return { status: 'rate_limited' };
     let data;
     try { data = await res.json(); } catch (e) { return { status: 'error' }; }
     if (['ok', 'pending', 'known'].includes(data.status)) {
       await api.storage.local.set({ [REPORTED_KEY]: [...reported, domain] });
     }
-    return data; // peut contenir status:"invalid"
+    return data; // may contain status:"invalid"
   } catch (e) {
-    return { status: 'error' }; // réseau / timeout / hors-ligne
+    return { status: 'error' }; // network / timeout / offline
   } finally {
     clearTimeout(timer);
   }
@@ -224,17 +224,17 @@ api.tabs.onRemoved.addListener((tabId) => {
   delete tabMeta[tabId];
 });
 
-// Couche 3 — réseau, lecture seule (pas de "blocking" en MV3).
+// Layer 3 — network, read-only (no "blocking" in MV3).
 api.webRequest.onBeforeRequest.addListener(
   (details) => {
     const url = details.url || '';
     if (!NET_PATTERNS.some(p => url.includes(p))) return;
     const tabId = details.tabId;
     if (tabId < 0) return;
-    // Ignorer les requêtes initiées par notre propre site.
+    // Ignore requests initiated by our own site.
     const origin = details.initiator || details.originUrl || details.documentUrl || '';
     try { if (origin && isSelfHost(new URL(origin).hostname)) return; } catch (e) {}
-    if (tabStates[tabId] === 'detected') return; // déjà rouge via la liste
+    if (tabStates[tabId] === 'detected') return; // already red via the list
     if (!tabMeta[tabId]) tabMeta[tabId] = { inList: false, detectedBy: null };
     tabMeta[tabId].detectedBy = 'network';
     setTabState(tabId, 'detected_net');
@@ -244,7 +244,7 @@ api.webRequest.onBeforeRequest.addListener(
 );
 
 api.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  // Pour get_state/get_config le tabId vient du sender (content) ou est résolu côté popup.
+  // For get_state/get_config the tabId comes from the sender (content) or is resolved by the popup.
   const senderTabId = sender.tab ? sender.tab.id : null;
 
   switch (msg.action) {
@@ -260,7 +260,7 @@ api.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
     case 'utiq_dom_clean': {
       if (senderTabId == null) break;
-      // Ne pas écraser une détection réseau/liste.
+      // Do not overwrite a network/list detection.
       if (tabStates[senderTabId] === 'unknown' || tabStates[senderTabId] === undefined) {
         setTabState(senderTabId, 'clean');
       }
@@ -268,7 +268,7 @@ api.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
 
     case 'get_state': {
-      // Le popup n'a pas de sender.tab : il fournit son tabId, sinon on prend le sender.
+      // The popup has no sender.tab: it provides its tabId, otherwise we use the sender.
       const tabId = (msg.tabId != null) ? msg.tabId : senderTabId;
       sendResponse({
         state: tabStates[tabId] || 'unknown',
@@ -284,18 +284,18 @@ api.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
     case 'submit_report': {
       submitReport(msg.domain, msg.detectedBy).then(sendResponse);
-      return true; // réponse asynchrone
+      return true; // asynchronous response
     }
   }
 });
 
-// Alarme de rafraîchissement périodique (toutes les 6h).
+// Periodic refresh alarm (every 6h).
 api.alarms.create('refresh_list', { periodInMinutes: 360 });
 api.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === 'refresh_list') refreshList();
 });
 
-// Init : si pas de cache, on récupère la liste tout de suite.
+// Init: if there is no cache, fetch the list right away.
 (async () => {
   const result = await api.storage.local.get(CACHE_KEY);
   if (!result[CACHE_KEY]) await refreshList();

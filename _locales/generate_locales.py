@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Génère les fichiers _locales/<lang>/messages.json pour l'extension Utiq Detector.
+Generate the _locales/<lang>/messages.json files for the Utiq Detector extension.
 
-Une seule source de vérité (le dict TRANSLATIONS) -> un messages.json par langue.
-Codes de langue conformes à Chrome (https://developer.chrome.com/docs/extensions/reference/api/i18n#locales).
+A single source of truth (the T dict) -> one messages.json per language.
+Language codes follow Chrome (https://developer.chrome.com/docs/extensions/reference/api/i18n#locales).
 
-Usage : python3 generate_locales.py
+Usage: python3 generate_locales.py
 """
 
 import json
 import os
 
-# Ordre des clés (= ordre d'écriture dans chaque fichier)
+# Key order (= write order in each file)
 KEYS = [
     "extensionName", "extensionDescription",
     "popupDetected", "popupClean", "popupUnknown", "popupUnknownSite",
@@ -23,10 +23,10 @@ KEYS = [
 
 NAME = "Utiq Detector"
 
-# Chaque langue : tuple de 16 chaînes (toutes les clés sauf extensionName, fixe).
-# Ordre : desc, detected, clean, unknown, unknownSite, sitesLabel, moreInfo,
-#         optout, reportPrompt, reportBtn, reporting, reported, known,
-#         reportError, toastTitle, toastLink
+# Each language: tuple of 16 strings (all keys except extensionName, which is fixed).
+# Order: desc, detected, clean, unknown, unknownSite, sitesLabel, moreInfo,
+#        optout, reportPrompt, reportBtn, reporting, reported, known,
+#        reportError, toastTitle, toastLink
 T = {
 "fr": ("Détecte si un site utilise Utiq, le pistage publicitaire des opérateurs télécom, et vous avertit.","utilise Utiq (pistage opérateur)","n'utilise pas Utiq","Analyse en cours…","ce site","sites","Plus d'infos sur Utiq Tracker →","Se désinscrire d'Utiq →","🔍 Ce site n'est pas encore dans notre liste.<br><strong>Aidez-nous à le référencer !</strong>","Signaler ce site","Envoi…","✓ Merci ! Ce site sera bientôt ajouté à la liste.","✓ Ce site est déjà en cours d'ajout.","Erreur, réessaie dans quelques instants.","Ce site utilise Utiq","En savoir plus →"),
 "en": ("Detects whether a website uses Utiq, the telco advertising tracker, and warns you.","uses Utiq (telco tracking)","does not use Utiq","Analysing…","this site","sites","More info on Utiq Tracker →","Opt out of Utiq →","🔍 This site is not in our list yet.<br><strong>Help us reference it!</strong>","Report this site","Sending…","✓ Thanks! This site will soon be added to the list.","✓ This site is already being added.","Error, please try again in a moment.","This site uses Utiq","Learn more →"),
@@ -73,7 +73,7 @@ T = {
 }
 T.pop("uk_extra_placeholder", None)
 
-# Clés supplémentaires (réponses serveur invalid / 429). (invalid, rate_limited)
+# Extra keys (server responses invalid / 429). (invalid, rate_limited)
 EXTRA = {
 "fr": ("Ce site ne peut pas être signalé.", "Trop de signalements, réessaie plus tard."),
 "en": ("This site can't be reported.", "Too many reports, try again later."),
@@ -120,7 +120,7 @@ EXTRA = {
 
 EXTRA_KEYS = ["popupReportInvalid", "popupReportRateLimited"]
 
-# Invite courte affichée dans le toast in-page (avant le bouton "Signaler").
+# Short prompt shown in the in-page toast (before the "Report" button).
 TOAST = {
 "fr": "Ce site n'est pas encore référencé.", "en": "This site isn't listed yet.",
 "de": "Diese Website ist noch nicht erfasst.", "es": "Este sitio aún no está listado.",
@@ -161,8 +161,8 @@ def main():
         with open(path, "w", encoding="utf-8") as f:
             json.dump(msgs, f, ensure_ascii=False, indent=2)
             f.write("\n")
-        print(f"  {lang} ({len(vals)} clés)")
-    print(f"{len(T)} langues générées.")
+        print(f"  {lang} ({len(vals)} keys)")
+    print(f"{len(T)} languages generated.")
 
 
 if __name__ == "__main__":

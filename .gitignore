@@ -5,6 +5,10 @@ dist/
 JOURNAL.md
 test/
 
+# Python bytecode cache
+__pycache__/
+*.pyc
+
 # macOS
 .DS_Store
 

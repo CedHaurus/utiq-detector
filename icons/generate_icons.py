@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-Génère les icônes de l'extension Utiq Detector.
+Generate the Utiq Detector extension icons.
 
-Le design est dérivé du favicon officiel d'utiq-tracker.online
-(`icons/favicon.svg`) : carré arrondi + bordure sombre + lettre "U" blanche.
-Seule la couleur de fond change selon l'état détecté.
+The design is derived from the official utiq-tracker.online favicon
+(`icons/favicon.svg`): rounded square + dark border + white "U" letter.
+Only the background color changes depending on the detected state.
 
-  red   #e03030  -> Utiq détecté
-  green #22a060  -> site propre
-  gray  #888888  -> état inconnu / analyse en cours
+  red   #e03030  -> Utiq detected
+  green #22a060  -> clean site
+  gray  #888888  -> unknown / analysis in progress
 
-Usage : pip install Pillow && python3 generate_icons.py
+Usage: pip install Pillow && python3 generate_icons.py
 """
 
 import os
@@ -19,19 +19,19 @@ from PIL import Image, ImageDraw, ImageFont
 
 SIZES = [16, 32, 48, 128]
 
-# Couleurs de fond par état (le reste du design vient du favicon du site)
+# Background colors per state (the rest of the design comes from the site favicon)
 COLORS = {
     "red": "#e03030",
     "green": "#22a060",
     "gray": "#888888",
 }
 
-BORDER = "#1b1a17"   # bordure sombre, identique au favicon
-LETTER = "#ffffff"   # "U" blanche
+BORDER = "#1b1a17"   # dark border, identical to the favicon
+LETTER = "#ffffff"   # white "U"
 
 
 def load_font(px):
-    """Police bold système, avec fallback sur la police par défaut Pillow."""
+    """Bold system font, falling back to Pillow's default font."""
     candidates = [
         "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
         "/System/Library/Fonts/Helvetica.ttc",
@@ -47,16 +47,16 @@ def load_font(px):
 
 
 def make_icon(color_hex, size):
-    # Supersampling x4 pour des bords nets
+    # 4x supersampling for crisp edges
     scale = 4
     s = size * scale
     img = Image.new("RGBA", (s, s), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
 
-    radius = int(s * 0.16)          # rx ≈ 10/64 du favicon
+    radius = int(s * 0.16)          # rx ≈ 10/64 of the favicon
     d.rounded_rectangle([0, 0, s - 1, s - 1], radius=radius, fill=color_hex)
 
-    # Bordure interne sombre (rect x6 y6 w52 stroke4 dans le favicon)
+    # Inner dark border (rect x6 y6 w52 stroke4 in the favicon)
     inset = int(s * 0.094)
     bw = max(1, int(s * 0.0625))
     d.rounded_rectangle(
@@ -66,7 +66,7 @@ def make_icon(color_hex, size):
         width=bw,
     )
 
-    # Lettre "U" centrée
+    # Centered "U" letter
     font = load_font(int(s * 0.55))
     bbox = d.textbbox((0, 0), "U", font=font)
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
@@ -78,19 +78,19 @@ def make_icon(color_hex, size):
 
 
 def make_brand_icons():
-    """Décline l'icône de marque officielle (orange) à partir du master fourni
+    """Derive the official brand icon (orange) from the provided master
     `../utiq-icon-512.png` -> icon-brand-{16,32,48,128}.png.
 
-    Ces icônes servent d'icône de PAQUET (store, chrome://extensions). L'icône de
-    la barre d'outils, elle, change de couleur selon l'état (red/green/gray)."""
+    These are the PACKAGE icons (store, chrome://extensions). The toolbar icon,
+    on the other hand, changes color depending on the state (red/green/gray)."""
     master = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "utiq-icon-512.png")
     if not os.path.exists(master):
-        print("  (master utiq-icon-512.png absent — icônes de marque non générées)")
+        print("  (master utiq-icon-512.png missing — brand icons not generated)")
         return
     src = Image.open(master).convert("RGBA")
     for size in SIZES:
         src.resize((size, size), Image.LANCZOS).save(f"icon-brand-{size}.png")
-        print(f"  écrit icon-brand-{size}.png")
+        print(f"  wrote icon-brand-{size}.png")
 
 
 def main():
@@ -99,9 +99,9 @@ def main():
             icon = make_icon(hex_color, size)
             out = f"icon-{name}-{size}.png"
             icon.save(out)
-            print(f"  écrit {out}")
+            print(f"  wrote {out}")
     make_brand_icons()
-    print("Icônes générées.")
+    print("Icons generated.")
 
 
 if __name__ == "__main__":

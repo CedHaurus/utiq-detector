@@ -1,20 +1,20 @@
-/* Utiq Detector — Content Script (couche 2 : scan DOM) */
+/* Utiq Detector — Content Script (layer 2: DOM scan) */
 
 const api = (typeof browser !== 'undefined') ? browser : chrome;
 
 let detected      = false;
 let reportedClean = false;
-let inList        = false;   // site déjà présent dans la liste centralisée
+let inList        = false;   // site already present in the centralized list
 let toastShown    = false;
 let detectedBy    = 'unknown';
 
-// Domaine candidat au signalement (minuscules, sans www.).
+// Candidate domain for reporting (lowercase, without www.).
 const reportDomain = (location.hostname || '').toLowerCase().replace(/^www\./, '');
 
-// Patterns de scripts Utiq.
+// Utiq script patterns.
 const SCRIPT_PATTERNS = ['utiqLoader', 'utiqConsentManager', 'utiqManagePage'];
 
-// i18n robuste (fonctionne dans les content scripts, mais on protège).
+// Robust i18n (works in content scripts, but guard it anyway).
 function t(key, fallback) {
   try {
     const m = api.i18n.getMessage(key);
@@ -23,7 +23,7 @@ function t(key, fallback) {
   return fallback;
 }
 
-// Promesse autour de runtime.sendMessage (compat Chrome callback / Firefox promise).
+// Promise wrapper around runtime.sendMessage (Chrome callback / Firefox promise).
 function sendBg(message) {
   return new Promise((resolve) => {
     try {
@@ -42,14 +42,14 @@ function storageGet(key) {
   });
 }
 
-// Domaines de l'extension elle-même : jamais flaggés (site source + son opt-out).
+// The extension's own domains: never flagged (source site + its opt-out).
 const SELF_HOSTS = ['utiq-tracker.online'];
 function isSelfHost(host) {
   host = (host || '').toLowerCase();
   return SELF_HOSTS.some(h => host === h || host.endsWith('.' + h));
 }
 
-// Même pré-filtre que le popup : ne proposer le signalement que pour un FQDN public.
+// Same pre-filter as the popup: only offer reporting for a public FQDN.
 function isReportableDomain(host) {
   if (!host) return false;
   if (host.length < 5) return false;
@@ -59,7 +59,7 @@ function isReportableDomain(host) {
   return /^[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(host);
 }
 
-/* ---------- Fonctions de détection ---------- */
+/* ---------- Detection functions ---------- */
 
 function checkScripts() {
   const scripts = document.querySelectorAll('script[src]');
@@ -68,7 +68,7 @@ function checkScripts() {
     for (const p of SCRIPT_PATTERNS) {
       if (src.includes(p)) return { found: true, reason: 'script_src', detail: p };
     }
-    // CNAME cloaking : hostname du script commence par "utiq."
+    // CNAME cloaking: the script hostname starts with "utiq.".
     try {
       const host = new URL(src).hostname;
       if (/^utiq\./i.test(host)) return { found: true, reason: 'cname', detail: host };
@@ -86,7 +86,7 @@ function checkGlobalVars() {
   return { found: false };
 }
 
-/* --- Signaux FORTS : propres à une intégration Utiq, déclenchent seuls --- */
+/* --- STRONG signals: specific to a Utiq integration, trigger on their own --- */
 
 function checkLocalStorageStrong() {
   try {
@@ -107,7 +107,7 @@ function checkCookiesStrong() {
 }
 
 function checkDOMStrong() {
-  // Sélecteurs de l'INTÉGRATION Utiq (pas un simple lien cité dans un article).
+  // Selectors specific to the Utiq INTEGRATION (not just a link quoted in an article).
   const selectors = ['[data-utiq]', '#utiq-consent', '#utiq-manage-page', '.utiq-popup'];
   for (const sel of selectors) {
     try {
@@ -119,11 +119,11 @@ function checkDOMStrong() {
   return { found: false };
 }
 
-/* --- Signaux FAIBLES : génériques / ambigus. Il en faut AU MOINS DEUX pour
-       flagger, afin de ne pas piéger un blog/article qui parle d'Utiq. --- */
+/* --- WEAK signals: generic / ambiguous. AT LEAST TWO are required to flag,
+       so a blog/article merely talking about Utiq is not caught. --- */
 
 function checkConsentHubLink() {
-  // Un article peut citer ce lien sans utiliser Utiq -> signal faible.
+  // An article may quote this link without using Utiq -> weak signal.
   try {
     if (document.querySelector('a[href*="consenthub.utiq.com"]')) {
       return { found: true, reason: 'consenthub_link', detail: 'consenthub.utiq.com' };
@@ -133,7 +133,7 @@ function checkConsentHubLink() {
 }
 
 function checkLocalStorageWeak() {
-  // mtid / atid sont des noms génériques -> faible hors corroboration.
+  // mtid / atid are generic names -> weak without corroboration.
   try {
     for (const k of ['mtid', 'atid']) {
       if (localStorage.getItem(k) !== null) {
@@ -172,7 +172,7 @@ function checkFooterText() {
 }
 
 function runAllChecks() {
-  // 1) Un seul signal fort suffit.
+  // 1) A single strong signal is enough.
   const strong = [
     checkScripts, checkGlobalVars,
     checkLocalStorageStrong, checkCookiesStrong, checkDOMStrong
@@ -181,7 +181,7 @@ function runAllChecks() {
     const r = fn();
     if (r.found) return r;
   }
-  // 2) Sinon, il faut au moins DEUX signaux faibles concordants.
+  // 2) Otherwise, at least TWO concurring weak signals are required.
   const weak = [checkConsentHubLink, checkFooterText, checkLocalStorageWeak, checkCookiesWeak];
   const hits = [];
   for (const fn of weak) {
@@ -194,7 +194,7 @@ function runAllChecks() {
   return { found: false };
 }
 
-/* ---------- Reporting au background ---------- */
+/* ---------- Reporting to the background ---------- */
 
 function reportDetected(reason, detail) {
   detected = true;
@@ -202,7 +202,7 @@ function reportDetected(reason, detail) {
   try {
     api.runtime.sendMessage({ action: 'utiq_dom_detected', reason, detail });
   } catch (e) {}
-  // Avertir l'utilisateur dans tous les cas de détection (liste, DOM, réseau).
+  // Warn the user in every detection case (list, DOM, network).
   showToast();
 }
 
@@ -214,14 +214,14 @@ function reportClean() {
   } catch (e) {}
 }
 
-/* ---------- Toast in-page ---------- */
+/* ---------- In-page toast ---------- */
 
-// Branche le signalement directement sur le bouton du toast.
+// Wire reporting directly onto the toast button.
 function attachToastReport(toast, btn, feedback) {
   btn.addEventListener('click', async () => {
-    clearTimeout(toast._utiqTimer); // ne pas refermer pendant l'action
+    clearTimeout(toast._utiqTimer); // do not auto-close during the action
     btn.disabled = true;
-    btn.textContent = t('popupReporting', 'Envoi…');
+    btn.textContent = t('popupReporting', 'Sending…');
 
     const res = await sendBg({ action: 'submit_report', domain: reportDomain, detectedBy });
 
@@ -231,31 +231,31 @@ function attachToastReport(toast, btn, feedback) {
     switch (res && res.status) {
       case 'ok':
       case 'pending':
-        feedback.textContent = t('popupReported', '✓ Merci ! Ce site sera bientôt ajouté à la liste.');
+        feedback.textContent = t('popupReported', '✓ Thanks! This site will soon be added to the list.');
         feedback.style.color = '#7cffb0';
         break;
       case 'known':
       case 'already_reported':
-        feedback.textContent = t('popupKnown', '✓ Ce site est déjà en cours d\'ajout.');
+        feedback.textContent = t('popupKnown', '✓ This site is already being added.');
         feedback.style.color = '#7cffb0';
         break;
       case 'invalid':
-        feedback.textContent = t('popupReportInvalid', 'Ce site ne peut pas être signalé.');
+        feedback.textContent = t('popupReportInvalid', "This site can't be reported.");
         feedback.style.color = '#ff9b9b';
         break;
       case 'rate_limited':
-        feedback.textContent = t('popupReportRateLimited', 'Trop de signalements, réessaie plus tard.');
+        feedback.textContent = t('popupReportRateLimited', 'Too many reports, try again later.');
         feedback.style.color = '#ff9b9b';
         break;
       default:
-        feedback.textContent = t('popupReportError', 'Erreur, réessaie dans quelques instants.');
+        feedback.textContent = t('popupReportError', 'Error, please try again in a moment.');
         feedback.style.color = '#ff9b9b';
-        reopen = true; // erreur réseau : on autorise une nouvelle tentative
+        reopen = true; // network error: allow a retry
     }
     if (reopen) {
       btn.style.display = 'block';
       btn.disabled = false;
-      btn.textContent = t('popupReportBtn', 'Signaler ce site');
+      btn.textContent = t('popupReportBtn', 'Report this site');
     } else {
       toast._utiqTimer = setTimeout(() => toast.remove(), 6000);
     }
@@ -291,19 +291,19 @@ function buildToast(opts) {
   body.style.cssText = 'flex:1 1 auto';
 
   const title = document.createElement('div');
-  title.textContent = t('toastTitle', 'Ce site utilise Utiq');
+  title.textContent = t('toastTitle', 'This site uses Utiq');
   title.style.cssText = 'font-weight:600;margin-bottom:4px';
 
   const link = document.createElement('a');
   link.href = trackerUrl;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
-  link.textContent = t('toastLink', 'En savoir plus →');
+  link.textContent = t('toastLink', 'Learn more →');
   link.style.cssText = 'color:#ff8a4c;text-decoration:none;font-size:12px;display:inline-block';
 
   const close = document.createElement('button');
   close.textContent = '×';
-  close.setAttribute('aria-label', 'Fermer');
+  close.setAttribute('aria-label', 'Close');
   close.style.cssText = [
     'flex:0 0 auto', 'background:none', 'border:none',
     'color:#999', 'font-size:18px', 'line-height:1',
@@ -314,14 +314,14 @@ function buildToast(opts) {
   body.appendChild(title);
   body.appendChild(link);
 
-  // Bouton de signalement intégré (site détecté hors liste) -> visible sans ouvrir le popup.
+  // Inline report button (site detected but not in the list) -> visible without opening the popup.
   if (opts.canReport) {
     const prompt = document.createElement('div');
-    prompt.textContent = '🔍 ' + t('toastReportPrompt', 'Ce site n\'est pas encore référencé.');
+    prompt.textContent = '🔍 ' + t('toastReportPrompt', "This site isn't listed yet.");
     prompt.style.cssText = 'font-size:12px;color:#cfcfcf;margin-top:8px';
 
     const btn = document.createElement('button');
-    btn.textContent = t('popupReportBtn', 'Signaler ce site');
+    btn.textContent = t('popupReportBtn', 'Report this site');
     btn.style.cssText = [
       'display:block', 'width:100%', 'margin-top:8px',
       'background:#e8590c', 'color:#fff', 'border:none', 'border-radius:6px',
@@ -345,7 +345,7 @@ function buildToast(opts) {
 }
 
 function showToast() {
-  if (isSelfHost(location.hostname)) return; // ne jamais alerter sur notre propre site
+  if (isSelfHost(location.hostname)) return; // never warn on our own site
   if (toastShown || document.getElementById('_utiq_det_toast')) return;
   if (!document.body) return;
   toastShown = true;
@@ -357,11 +357,11 @@ function showToast() {
     info = info || {};
     const toast = buildToast(info);
     document.body.appendChild(toast);
-    // Plus de temps si une action est proposée ; le clic annule cette fermeture.
+    // More time when an action is offered; the click cancels this auto-close.
     toast._utiqTimer = setTimeout(() => toast.remove(), info.canReport ? 20000 : 8000);
   };
 
-  // Config + état + domaines déjà signalés + domaines déjà avertis (anti-spam).
+  // Config + state + already-reported domains + already-warned domains (anti-spam).
   Promise.all([
     sendBg({ action: 'get_config' }),
     sendBg({ action: 'get_state' }),
@@ -370,7 +370,7 @@ function showToast() {
   ]).then(([cfg, st, repCache, warnCache]) => {
     const host = (location.hostname || '').toLowerCase();
     const warned = (warnCache && warnCache['warned_domains']) || [];
-    // Déjà averti pour ce domaine -> on n'affiche plus le toast (l'icône rouge suffit).
+    // Already warned for this domain -> stop showing the toast (the red icon is enough).
     if (warned.includes(host)) { settled = true; return; }
 
     const meta = (st && st.meta) || {};
@@ -380,15 +380,15 @@ function showToast() {
     const canReport = !inList && isReportableDomain(reportDomain) && !reported.includes(reportDomain);
 
     render({ trackerUrl: cfg && cfg.trackerUrl, canReport });
-    // Mémoriser l'avertissement pour ne plus le réafficher à chaque page.
+    // Remember the warning so it is not shown again on every page.
     try { api.storage.local.set({ warned_domains: [...warned, host] }); } catch (e) {}
   }).catch(() => render(null));
 
-  // Filet de sécurité si le background tarde (toast simple, sans bouton).
+  // Safety net if the background is slow (plain toast, no button).
   setTimeout(() => render(null), 2500);
 }
 
-/* ---------- MutationObserver (scripts injectés tardivement) ---------- */
+/* ---------- MutationObserver (late-injected scripts) ---------- */
 
 function observeDOM() {
   let observer;
@@ -415,14 +415,14 @@ function observeDOM() {
   setTimeout(() => observer.disconnect(), 30000);
 }
 
-/* ---------- Messages du background ---------- */
+/* ---------- Messages from the background ---------- */
 
 api.runtime.onMessage.addListener((msg) => {
   if (!msg || !msg.action) return;
   if (msg.action === 'already_in_list') {
     inList = true;
     detected = true;
-    showToast(); // le site est connu : on avertit quand même l'utilisateur
+    showToast(); // the site is known: still warn the user
   } else if (msg.action === 'utiq_network_detected') {
     detected = true;
     if (!detectedBy || detectedBy === 'unknown') detectedBy = 'network';
@@ -432,8 +432,8 @@ api.runtime.onMessage.addListener((msg) => {
 
 /* ---------- Init ---------- */
 
-// La détection via la liste / le réseau peut arriver avant que ce script soit prêt
-// (le message poussé est alors perdu) -> on interroge le background au démarrage.
+// List/network detection may happen before this script is ready
+// (the pushed message is then lost) -> query the background on startup.
 function checkBackgroundState() {
   const handle = (resp) => {
     if (!resp) return;
@@ -452,7 +452,7 @@ function checkBackgroundState() {
 }
 
 function init() {
-  // Notre propre site (et son opt-out) n'est jamais analysé ni flaggé.
+  // Our own site (and its opt-out) is never analysed nor flagged.
   if (isSelfHost(location.hostname)) { reportClean(); return; }
   checkBackgroundState();
   const r = runAllChecks();

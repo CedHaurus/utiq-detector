@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Construit les paquets de test de l'extension Utiq Detector.
-#   dist/utiq-detector/                 -> dossier "non empaqueté" (Brave/Chrome : Load unpacked)
-#   dist/utiq-detector-chrome.zip       -> à dézipper pour Brave/Chrome
-#   dist/utiq-detector-firefox.zip      -> chargeable tel quel dans Firefox (temporary add-on)
+# Build the Utiq Detector extension packages.
+#   dist/utiq-detector/                 -> "unpacked" folder (Brave/Chrome: Load unpacked)
+#   dist/utiq-detector-chrome.zip       -> unzip for Brave/Chrome
+#   dist/utiq-detector-firefox.zip      -> loadable as-is in Firefox (temporary add-on)
 #
-# N'inclut QUE les fichiers d'exécution (pas les scripts .py, .md, le master 512, etc.).
+# Includes ONLY the runtime files (no .py scripts, no .md, no 512 master, etc.).
 
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -13,17 +13,17 @@ OUT="dist/utiq-detector"
 rm -rf dist
 mkdir -p "$OUT/icons"
 
-# Fichiers d'exécution
+# Runtime files
 cp manifest.json background.js content.js "$OUT/"
 cp -R popup "$OUT/"
 cp -R _locales "$OUT/"
-# Uniquement les PNG (pas favicon.svg ni generate_icons.py)
+# PNG only (no favicon.svg, no generate_icons.py)
 cp icons/*.png "$OUT/icons/"
 
-# Zips (depuis l'intérieur du dossier pour que manifest.json soit à la racine du zip)
+# Zips (from inside the folder so manifest.json sits at the zip root)
 ( cd "$OUT" && zip -qr -X "../utiq-detector-chrome.zip"  . )
 ( cd "$OUT" && zip -qr -X "../utiq-detector-firefox.zip" . )
 
-echo "Paquets générés :"
+echo "Packages built:"
 ls -1 dist/*.zip
-echo "Dossier non empaqueté : $OUT/"
+echo "Unpacked folder: $OUT/"
