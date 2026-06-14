@@ -15,3 +15,6 @@ __pycache__/
 # Éditeurs
 .vscode/
 *.swp
+
+# Store listing assets (local, not published)
+store-assets/
