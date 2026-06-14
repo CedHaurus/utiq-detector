@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Wykrywa, czy witryna korzysta z Utiq, reklamowego śledzenia operatorów telekomunikacyjnych, i ostrzega Cię."
+  },
+  "popupDetected": {
+    "message": "korzysta z Utiq (śledzenie operatora)"
+  },
+  "popupClean": {
+    "message": "nie korzysta z Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analizowanie…"
+  },
+  "popupUnknownSite": {
+    "message": "ta witryna"
+  },
+  "popupSitesLabel": {
+    "message": "witryn"
+  },
+  "popupMoreInfo": {
+    "message": "Więcej informacji w Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Zrezygnuj z Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Tej witryny nie ma jeszcze na naszej liście.<br><strong>Pomóż nam ją dodać!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Zgłoś tę witrynę"
+  },
+  "popupReporting": {
+    "message": "Wysyłanie…"
+  },
+  "popupReported": {
+    "message": "✓ Dziękujemy! Ta witryna zostanie wkrótce dodana do listy."
+  },
+  "popupKnown": {
+    "message": "✓ Ta witryna jest już dodawana."
+  },
+  "popupReportError": {
+    "message": "Błąd, spróbuj ponownie za chwilę."
+  },
+  "toastTitle": {
+    "message": "Ta witryna korzysta z Utiq"
+  },
+  "toastLink": {
+    "message": "Dowiedz się więcej →"
+  },
+  "popupReportInvalid": {
+    "message": "Tej witryny nie można zgłosić."
+  },
+  "popupReportRateLimited": {
+    "message": "Zbyt wiele zgłoszeń, spróbuj później."
+  },
+  "toastReportPrompt": {
+    "message": "Tej witryny nie ma jeszcze na liście."
+  }
+}

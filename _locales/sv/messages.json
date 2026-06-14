@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Upptäcker om en webbplats använder Utiq, teleoperatörernas annonsspårning, och varnar dig."
+  },
+  "popupDetected": {
+    "message": "använder Utiq (operatörsspårning)"
+  },
+  "popupClean": {
+    "message": "använder inte Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analyserar…"
+  },
+  "popupUnknownSite": {
+    "message": "den här webbplatsen"
+  },
+  "popupSitesLabel": {
+    "message": "webbplatser"
+  },
+  "popupMoreInfo": {
+    "message": "Mer info på Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Avregistrera dig från Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Den här webbplatsen finns inte i vår lista ännu.<br><strong>Hjälp oss att registrera den!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Rapportera den här webbplatsen"
+  },
+  "popupReporting": {
+    "message": "Skickar…"
+  },
+  "popupReported": {
+    "message": "✓ Tack! Den här webbplatsen läggs snart till i listan."
+  },
+  "popupKnown": {
+    "message": "✓ Den här webbplatsen håller redan på att läggas till."
+  },
+  "popupReportError": {
+    "message": "Fel, försök igen om en stund."
+  },
+  "toastTitle": {
+    "message": "Den här webbplatsen använder Utiq"
+  },
+  "toastLink": {
+    "message": "Läs mer →"
+  },
+  "popupReportInvalid": {
+    "message": "Den här webbplatsen kan inte rapporteras."
+  },
+  "popupReportRateLimited": {
+    "message": "För många rapporter, försök igen senare."
+  },
+  "toastReportPrompt": {
+    "message": "Den här webbplatsen är inte listad ännu."
+  }
+}

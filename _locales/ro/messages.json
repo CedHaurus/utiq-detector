@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Detectează dacă un site folosește Utiq, urmărirea publicitară a operatorilor de telecomunicații, și te avertizează."
+  },
+  "popupDetected": {
+    "message": "folosește Utiq (urmărire operator)"
+  },
+  "popupClean": {
+    "message": "nu folosește Utiq"
+  },
+  "popupUnknown": {
+    "message": "Se analizează…"
+  },
+  "popupUnknownSite": {
+    "message": "acest site"
+  },
+  "popupSitesLabel": {
+    "message": "site-uri"
+  },
+  "popupMoreInfo": {
+    "message": "Mai multe informații pe Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Renunță la Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Acest site nu este încă în lista noastră.<br><strong>Ajută-ne să îl înregistrăm!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Raportează acest site"
+  },
+  "popupReporting": {
+    "message": "Se trimite…"
+  },
+  "popupReported": {
+    "message": "✓ Mulțumim! Acest site va fi adăugat în curând în listă."
+  },
+  "popupKnown": {
+    "message": "✓ Acest site este deja în curs de adăugare."
+  },
+  "popupReportError": {
+    "message": "Eroare, încearcă din nou peste un moment."
+  },
+  "toastTitle": {
+    "message": "Acest site folosește Utiq"
+  },
+  "toastLink": {
+    "message": "Află mai multe →"
+  },
+  "popupReportInvalid": {
+    "message": "Acest site nu poate fi raportat."
+  },
+  "popupReportRateLimited": {
+    "message": "Prea multe raportări, încearcă mai târziu."
+  },
+  "toastReportPrompt": {
+    "message": "Acest site nu este încă listat."
+  }
+}

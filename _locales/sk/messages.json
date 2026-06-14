@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Zisťuje, či webová lokalita používa Utiq, reklamné sledovanie telekomunikačných operátorov, a upozorní vás."
+  },
+  "popupDetected": {
+    "message": "používa Utiq (sledovanie operátora)"
+  },
+  "popupClean": {
+    "message": "nepoužíva Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analyzujem…"
+  },
+  "popupUnknownSite": {
+    "message": "táto lokalita"
+  },
+  "popupSitesLabel": {
+    "message": "lokalít"
+  },
+  "popupMoreInfo": {
+    "message": "Viac informácií na Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Odhlásiť sa z Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Táto lokalita zatiaľ nie je v našom zozname.<br><strong>Pomôžte nám ju zaznamenať!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Nahlásiť túto lokalitu"
+  },
+  "popupReporting": {
+    "message": "Odosielanie…"
+  },
+  "popupReported": {
+    "message": "✓ Ďakujeme! Táto lokalita bude čoskoro pridaná do zoznamu."
+  },
+  "popupKnown": {
+    "message": "✓ Táto lokalita sa už pridáva."
+  },
+  "popupReportError": {
+    "message": "Chyba, skúste to o chvíľu znova."
+  },
+  "toastTitle": {
+    "message": "Táto lokalita používa Utiq"
+  },
+  "toastLink": {
+    "message": "Viac informácií →"
+  },
+  "popupReportInvalid": {
+    "message": "Túto lokalitu nemožno nahlásiť."
+  },
+  "popupReportRateLimited": {
+    "message": "Príliš veľa hlásení, skúste to neskôr."
+  },
+  "toastReportPrompt": {
+    "message": "Táto lokalita zatiaľ nie je v zozname."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "يكتشف ما إذا كان الموقع يستخدم Utiq، تتبّع الإعلانات الخاص بمشغّلي الاتصالات، وينبّهك."
+  },
+  "popupDetected": {
+    "message": "يستخدم Utiq (تتبّع المشغّل)"
+  },
+  "popupClean": {
+    "message": "لا يستخدم Utiq"
+  },
+  "popupUnknown": {
+    "message": "جارٍ التحليل…"
+  },
+  "popupUnknownSite": {
+    "message": "هذا الموقع"
+  },
+  "popupSitesLabel": {
+    "message": "مواقع"
+  },
+  "popupMoreInfo": {
+    "message": "مزيد من المعلومات على Utiq Tracker ←"
+  },
+  "popupOptout": {
+    "message": "إلغاء الاشتراك في Utiq ←"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 هذا الموقع ليس في قائمتنا بعد.<br><strong>ساعدنا في إضافته!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "الإبلاغ عن هذا الموقع"
+  },
+  "popupReporting": {
+    "message": "جارٍ الإرسال…"
+  },
+  "popupReported": {
+    "message": "✓ شكرًا! ستتم إضافة هذا الموقع إلى القائمة قريبًا."
+  },
+  "popupKnown": {
+    "message": "✓ تتم إضافة هذا الموقع بالفعل."
+  },
+  "popupReportError": {
+    "message": "خطأ، حاول مرة أخرى بعد لحظات."
+  },
+  "toastTitle": {
+    "message": "هذا الموقع يستخدم Utiq"
+  },
+  "toastLink": {
+    "message": "اعرف المزيد ←"
+  },
+  "popupReportInvalid": {
+    "message": "لا يمكن الإبلاغ عن هذا الموقع."
+  },
+  "popupReportRateLimited": {
+    "message": "عدد كبير من البلاغات، حاول لاحقًا."
+  },
+  "toastReportPrompt": {
+    "message": "هذا الموقع غير مُدرج بعد."
+  }
+}

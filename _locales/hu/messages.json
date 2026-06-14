@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Felismeri, ha egy webhely Utiq-ot használ – a távközlési szolgáltatók hirdetési nyomkövetését –, és figyelmeztet."
+  },
+  "popupDetected": {
+    "message": "Utiq-ot használ (szolgáltatói nyomkövetés)"
+  },
+  "popupClean": {
+    "message": "nem használ Utiq-ot"
+  },
+  "popupUnknown": {
+    "message": "Elemzés…"
+  },
+  "popupUnknownSite": {
+    "message": "ez a webhely"
+  },
+  "popupSitesLabel": {
+    "message": "webhely"
+  },
+  "popupMoreInfo": {
+    "message": "További információ az Utiq Trackeren →"
+  },
+  "popupOptout": {
+    "message": "Leiratkozás az Utiq-ról →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Ez a webhely még nem szerepel a listánkban.<br><strong>Segíts felvenni!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Webhely jelentése"
+  },
+  "popupReporting": {
+    "message": "Küldés…"
+  },
+  "popupReported": {
+    "message": "✓ Köszönjük! Ez a webhely hamarosan bekerül a listába."
+  },
+  "popupKnown": {
+    "message": "✓ Ez a webhely már hozzáadás alatt áll."
+  },
+  "popupReportError": {
+    "message": "Hiba, próbáld újra egy pillanat múlva."
+  },
+  "toastTitle": {
+    "message": "Ez a webhely Utiq-ot használ"
+  },
+  "toastLink": {
+    "message": "Tudj meg többet →"
+  },
+  "popupReportInvalid": {
+    "message": "Ez a webhely nem jelenthető."
+  },
+  "popupReportRateLimited": {
+    "message": "Túl sok jelentés, próbáld később."
+  },
+  "toastReportPrompt": {
+    "message": "Ez a webhely még nincs a listán."
+  }
+}

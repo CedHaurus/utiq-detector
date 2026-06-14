@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Zjišťuje, zda web používá Utiq, reklamní sledování telekomunikačních operátorů, a upozorní vás."
+  },
+  "popupDetected": {
+    "message": "používá Utiq (sledování operátora)"
+  },
+  "popupClean": {
+    "message": "nepoužívá Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analyzuji…"
+  },
+  "popupUnknownSite": {
+    "message": "tento web"
+  },
+  "popupSitesLabel": {
+    "message": "webů"
+  },
+  "popupMoreInfo": {
+    "message": "Více informací na Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Odhlásit se z Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Tento web zatím není v našem seznamu.<br><strong>Pomozte nám ho zaznamenat!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Nahlásit tento web"
+  },
+  "popupReporting": {
+    "message": "Odesílání…"
+  },
+  "popupReported": {
+    "message": "✓ Děkujeme! Tento web bude brzy přidán do seznamu."
+  },
+  "popupKnown": {
+    "message": "✓ Tento web se již přidává."
+  },
+  "popupReportError": {
+    "message": "Chyba, zkuste to za okamžik znovu."
+  },
+  "toastTitle": {
+    "message": "Tento web používá Utiq"
+  },
+  "toastLink": {
+    "message": "Více informací →"
+  },
+  "popupReportInvalid": {
+    "message": "Tento web nelze nahlásit."
+  },
+  "popupReportRateLimited": {
+    "message": "Příliš mnoho hlášení, zkuste to později."
+  },
+  "toastReportPrompt": {
+    "message": "Tento web zatím není v seznamu."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "웹사이트가 통신사 광고 추적기 Utiq를 사용하는지 감지하고 알려줍니다."
+  },
+  "popupDetected": {
+    "message": "Utiq 사용 중(통신사 추적)"
+  },
+  "popupClean": {
+    "message": "Utiq를 사용하지 않음"
+  },
+  "popupUnknown": {
+    "message": "분석 중…"
+  },
+  "popupUnknownSite": {
+    "message": "이 사이트"
+  },
+  "popupSitesLabel": {
+    "message": "개 사이트"
+  },
+  "popupMoreInfo": {
+    "message": "Utiq Tracker에서 자세히 보기 →"
+  },
+  "popupOptout": {
+    "message": "Utiq 수신 거부 →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 이 사이트는 아직 목록에 없습니다.<br><strong>등록을 도와주세요!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "이 사이트 신고"
+  },
+  "popupReporting": {
+    "message": "전송 중…"
+  },
+  "popupReported": {
+    "message": "✓ 감사합니다! 이 사이트는 곧 목록에 추가됩니다."
+  },
+  "popupKnown": {
+    "message": "✓ 이 사이트는 이미 추가 중입니다."
+  },
+  "popupReportError": {
+    "message": "오류입니다. 잠시 후 다시 시도하세요."
+  },
+  "toastTitle": {
+    "message": "이 사이트는 Utiq를 사용합니다"
+  },
+  "toastLink": {
+    "message": "자세히 알아보기 →"
+  },
+  "popupReportInvalid": {
+    "message": "이 사이트는 신고할 수 없습니다."
+  },
+  "popupReportRateLimited": {
+    "message": "신고가 너무 많습니다. 나중에 다시 시도하세요."
+  },
+  "toastReportPrompt": {
+    "message": "이 사이트는 아직 목록에 없습니다."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "ตรวจจับว่าเว็บไซต์ใช้ Utiq ซึ่งเป็นการติดตามโฆษณาของผู้ให้บริการโทรคมนาคมหรือไม่ และแจ้งเตือนคุณ"
+  },
+  "popupDetected": {
+    "message": "ใช้ Utiq (การติดตามของผู้ให้บริการ)"
+  },
+  "popupClean": {
+    "message": "ไม่ใช้ Utiq"
+  },
+  "popupUnknown": {
+    "message": "กำลังวิเคราะห์…"
+  },
+  "popupUnknownSite": {
+    "message": "เว็บไซต์นี้"
+  },
+  "popupSitesLabel": {
+    "message": "เว็บไซต์"
+  },
+  "popupMoreInfo": {
+    "message": "ข้อมูลเพิ่มเติมที่ Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "ยกเลิกการใช้ Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 เว็บไซต์นี้ยังไม่อยู่ในรายการของเรา<br><strong>ช่วยเราเพิ่มเว็บไซต์นี้!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "รายงานเว็บไซต์นี้"
+  },
+  "popupReporting": {
+    "message": "กำลังส่ง…"
+  },
+  "popupReported": {
+    "message": "✓ ขอบคุณ! เว็บไซต์นี้จะถูกเพิ่มลงในรายการเร็วๆ นี้"
+  },
+  "popupKnown": {
+    "message": "✓ เว็บไซต์นี้กำลังถูกเพิ่มอยู่แล้ว"
+  },
+  "popupReportError": {
+    "message": "เกิดข้อผิดพลาด โปรดลองอีกครั้งในอีกสักครู่"
+  },
+  "toastTitle": {
+    "message": "เว็บไซต์นี้ใช้ Utiq"
+  },
+  "toastLink": {
+    "message": "ดูเพิ่มเติม →"
+  },
+  "popupReportInvalid": {
+    "message": "ไม่สามารถรายงานเว็บไซต์นี้ได้"
+  },
+  "popupReportRateLimited": {
+    "message": "รายงานมากเกินไป โปรดลองใหม่ภายหลัง"
+  },
+  "toastReportPrompt": {
+    "message": "เว็บไซต์นี้ยังไม่อยู่ในรายการ"
+  }
+}

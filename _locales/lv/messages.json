@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Nosaka, vai vietne izmanto Utiq — telekomunikāciju operatoru reklāmas izsekošanu — un brīdina jūs."
+  },
+  "popupDetected": {
+    "message": "izmanto Utiq (operatora izsekošana)"
+  },
+  "popupClean": {
+    "message": "neizmanto Utiq"
+  },
+  "popupUnknown": {
+    "message": "Notiek analīze…"
+  },
+  "popupUnknownSite": {
+    "message": "šī vietne"
+  },
+  "popupSitesLabel": {
+    "message": "vietnes"
+  },
+  "popupMoreInfo": {
+    "message": "Vairāk informācijas vietnē Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Atteikties no Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Šī vietne vēl nav mūsu sarakstā.<br><strong>Palīdziet mums to reģistrēt!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Ziņot par šo vietni"
+  },
+  "popupReporting": {
+    "message": "Notiek sūtīšana…"
+  },
+  "popupReported": {
+    "message": "✓ Paldies! Šī vietne drīz tiks pievienota sarakstam."
+  },
+  "popupKnown": {
+    "message": "✓ Šī vietne jau tiek pievienota."
+  },
+  "popupReportError": {
+    "message": "Kļūda, mēģiniet vēlreiz pēc brīža."
+  },
+  "toastTitle": {
+    "message": "Šī vietne izmanto Utiq"
+  },
+  "toastLink": {
+    "message": "Uzzināt vairāk →"
+  },
+  "popupReportInvalid": {
+    "message": "Šo vietni nevar ziņot."
+  },
+  "popupReportRateLimited": {
+    "message": "Pārāk daudz ziņojumu, mēģiniet vēlāk."
+  },
+  "toastReportPrompt": {
+    "message": "Šī vietne vēl nav sarakstā."
+  }
+}

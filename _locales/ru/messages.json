@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Определяет, использует ли сайт Utiq — рекламное отслеживание телеком-операторов — и предупреждает вас."
+  },
+  "popupDetected": {
+    "message": "использует Utiq (отслеживание оператора)"
+  },
+  "popupClean": {
+    "message": "не использует Utiq"
+  },
+  "popupUnknown": {
+    "message": "Анализ…"
+  },
+  "popupUnknownSite": {
+    "message": "этот сайт"
+  },
+  "popupSitesLabel": {
+    "message": "сайтов"
+  },
+  "popupMoreInfo": {
+    "message": "Подробнее на Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Отказаться от Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Этого сайта ещё нет в нашем списке.<br><strong>Помогите нам его добавить!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Сообщить о сайте"
+  },
+  "popupReporting": {
+    "message": "Отправка…"
+  },
+  "popupReported": {
+    "message": "✓ Спасибо! Сайт скоро будет добавлен в список."
+  },
+  "popupKnown": {
+    "message": "✓ Сайт уже добавляется."
+  },
+  "popupReportError": {
+    "message": "Ошибка, повторите попытку чуть позже."
+  },
+  "toastTitle": {
+    "message": "Этот сайт использует Utiq"
+  },
+  "toastLink": {
+    "message": "Подробнее →"
+  },
+  "popupReportInvalid": {
+    "message": "Этот сайт нельзя отправить."
+  },
+  "popupReportRateLimited": {
+    "message": "Слишком много сообщений, повторите позже."
+  },
+  "toastReportPrompt": {
+    "message": "Этого сайта ещё нет в списке."
+  }
+}

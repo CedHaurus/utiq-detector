@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Mengesan sama ada sesuatu tapak menggunakan Utiq, penjejakan iklan pengendali telekom, dan memberi amaran kepada anda."
+  },
+  "popupDetected": {
+    "message": "menggunakan Utiq (penjejakan pengendali)"
+  },
+  "popupClean": {
+    "message": "tidak menggunakan Utiq"
+  },
+  "popupUnknown": {
+    "message": "Menganalisis…"
+  },
+  "popupUnknownSite": {
+    "message": "tapak ini"
+  },
+  "popupSitesLabel": {
+    "message": "tapak"
+  },
+  "popupMoreInfo": {
+    "message": "Maklumat lanjut di Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Tarik diri daripada Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Tapak ini belum ada dalam senarai kami.<br><strong>Bantu kami mendaftarkannya!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Laporkan tapak ini"
+  },
+  "popupReporting": {
+    "message": "Menghantar…"
+  },
+  "popupReported": {
+    "message": "✓ Terima kasih! Tapak ini akan ditambah ke senarai tidak lama lagi."
+  },
+  "popupKnown": {
+    "message": "✓ Tapak ini sudah dalam proses penambahan."
+  },
+  "popupReportError": {
+    "message": "Ralat, cuba lagi sebentar lagi."
+  },
+  "toastTitle": {
+    "message": "Tapak ini menggunakan Utiq"
+  },
+  "toastLink": {
+    "message": "Ketahui lebih lanjut →"
+  },
+  "popupReportInvalid": {
+    "message": "Tapak ini tidak boleh dilaporkan."
+  },
+  "popupReportRateLimited": {
+    "message": "Terlalu banyak laporan, cuba lagi nanti."
+  },
+  "toastReportPrompt": {
+    "message": "Tapak ini belum disenaraikan."
+  }
+}

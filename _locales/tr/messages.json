@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Bir sitenin Utiq'i (telekom operatörlerinin reklam takibi) kullanıp kullanmadığını algılar ve sizi uyarır."
+  },
+  "popupDetected": {
+    "message": "Utiq kullanıyor (operatör takibi)"
+  },
+  "popupClean": {
+    "message": "Utiq kullanmıyor"
+  },
+  "popupUnknown": {
+    "message": "Analiz ediliyor…"
+  },
+  "popupUnknownSite": {
+    "message": "bu site"
+  },
+  "popupSitesLabel": {
+    "message": "site"
+  },
+  "popupMoreInfo": {
+    "message": "Utiq Tracker'da daha fazla bilgi →"
+  },
+  "popupOptout": {
+    "message": "Utiq'ten çık →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Bu site henüz listemizde değil.<br><strong>Kaydetmemize yardım edin!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Bu siteyi bildir"
+  },
+  "popupReporting": {
+    "message": "Gönderiliyor…"
+  },
+  "popupReported": {
+    "message": "✓ Teşekkürler! Bu site yakında listeye eklenecek."
+  },
+  "popupKnown": {
+    "message": "✓ Bu site zaten ekleniyor."
+  },
+  "popupReportError": {
+    "message": "Hata, birazdan tekrar deneyin."
+  },
+  "toastTitle": {
+    "message": "Bu site Utiq kullanıyor"
+  },
+  "toastLink": {
+    "message": "Daha fazla bilgi →"
+  },
+  "popupReportInvalid": {
+    "message": "Bu site bildirilemiyor."
+  },
+  "popupReportRateLimited": {
+    "message": "Çok fazla bildirim, daha sonra tekrar deneyin."
+  },
+  "toastReportPrompt": {
+    "message": "Bu site henüz listede değil."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Εντοπίζει αν ένας ιστότοπος χρησιμοποιεί το Utiq, τη διαφημιστική παρακολούθηση των τηλεπικοινωνιακών παρόχων, και σας προειδοποιεί."
+  },
+  "popupDetected": {
+    "message": "χρησιμοποιεί Utiq (παρακολούθηση παρόχου)"
+  },
+  "popupClean": {
+    "message": "δεν χρησιμοποιεί Utiq"
+  },
+  "popupUnknown": {
+    "message": "Ανάλυση…"
+  },
+  "popupUnknownSite": {
+    "message": "αυτός ο ιστότοπος"
+  },
+  "popupSitesLabel": {
+    "message": "ιστότοποι"
+  },
+  "popupMoreInfo": {
+    "message": "Περισσότερα στο Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Εξαίρεση από το Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Αυτός ο ιστότοπος δεν είναι ακόμη στη λίστα μας.<br><strong>Βοηθήστε μας να τον καταχωρίσουμε!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Αναφορά ιστότοπου"
+  },
+  "popupReporting": {
+    "message": "Αποστολή…"
+  },
+  "popupReported": {
+    "message": "✓ Ευχαριστούμε! Ο ιστότοπος θα προστεθεί σύντομα στη λίστα."
+  },
+  "popupKnown": {
+    "message": "✓ Ο ιστότοπος προστίθεται ήδη."
+  },
+  "popupReportError": {
+    "message": "Σφάλμα, δοκιμάστε ξανά σε λίγο."
+  },
+  "toastTitle": {
+    "message": "Αυτός ο ιστότοπος χρησιμοποιεί Utiq"
+  },
+  "toastLink": {
+    "message": "Μάθετε περισσότερα →"
+  },
+  "popupReportInvalid": {
+    "message": "Αυτός ο ιστότοπος δεν μπορεί να αναφερθεί."
+  },
+  "popupReportRateLimited": {
+    "message": "Πάρα πολλές αναφορές, δοκιμάστε αργότερα."
+  },
+  "toastReportPrompt": {
+    "message": "Αυτός ο ιστότοπος δεν είναι ακόμη καταχωρισμένος."
+  }
+}

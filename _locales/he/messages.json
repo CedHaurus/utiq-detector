@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "מזהה אם אתר משתמש ב-Utiq, מעקב הפרסום של מפעילי הסלולר, ומזהיר אותך."
+  },
+  "popupDetected": {
+    "message": "משתמש ב-Utiq (מעקב מפעיל)"
+  },
+  "popupClean": {
+    "message": "אינו משתמש ב-Utiq"
+  },
+  "popupUnknown": {
+    "message": "מנתח…"
+  },
+  "popupUnknownSite": {
+    "message": "אתר זה"
+  },
+  "popupSitesLabel": {
+    "message": "אתרים"
+  },
+  "popupMoreInfo": {
+    "message": "מידע נוסף ב-Utiq Tracker ←"
+  },
+  "popupOptout": {
+    "message": "ביטול הסכמה ל-Utiq ←"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 האתר הזה עדיין לא ברשימה שלנו.<br><strong>עזרו לנו להוסיף אותו!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "דווח על אתר זה"
+  },
+  "popupReporting": {
+    "message": "שולח…"
+  },
+  "popupReported": {
+    "message": "✓ תודה! האתר יתווסף לרשימה בקרוב."
+  },
+  "popupKnown": {
+    "message": "✓ האתר כבר בתהליך הוספה."
+  },
+  "popupReportError": {
+    "message": "שגיאה, נסה שוב בעוד רגע."
+  },
+  "toastTitle": {
+    "message": "האתר הזה משתמש ב-Utiq"
+  },
+  "toastLink": {
+    "message": "מידע נוסף ←"
+  },
+  "popupReportInvalid": {
+    "message": "לא ניתן לדווח על אתר זה."
+  },
+  "popupReportRateLimited": {
+    "message": "יותר מדי דיווחים, נסה שוב מאוחר יותר."
+  },
+  "toastReportPrompt": {
+    "message": "אתר זה עדיין לא רשום."
+  }
+}

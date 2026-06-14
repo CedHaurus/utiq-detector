@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "تشخیص می‌دهد که آیا یک وب‌سایت از Utiq، ردیابی تبلیغاتی اپراتورهای مخابراتی، استفاده می‌کند و به شما هشدار می‌دهد."
+  },
+  "popupDetected": {
+    "message": "از Utiq استفاده می‌کند (ردیابی اپراتور)"
+  },
+  "popupClean": {
+    "message": "از Utiq استفاده نمی‌کند"
+  },
+  "popupUnknown": {
+    "message": "در حال تحلیل…"
+  },
+  "popupUnknownSite": {
+    "message": "این سایت"
+  },
+  "popupSitesLabel": {
+    "message": "سایت"
+  },
+  "popupMoreInfo": {
+    "message": "اطلاعات بیشتر در Utiq Tracker ←"
+  },
+  "popupOptout": {
+    "message": "انصراف از Utiq ←"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 این سایت هنوز در فهرست ما نیست.<br><strong>به ما در ثبت آن کمک کنید!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "گزارش این سایت"
+  },
+  "popupReporting": {
+    "message": "در حال ارسال…"
+  },
+  "popupReported": {
+    "message": "✓ ممنون! این سایت به‌زودی به فهرست افزوده می‌شود."
+  },
+  "popupKnown": {
+    "message": "✓ این سایت در حال افزوده‌شدن است."
+  },
+  "popupReportError": {
+    "message": "خطا، چند لحظه دیگر دوباره تلاش کنید."
+  },
+  "toastTitle": {
+    "message": "این سایت از Utiq استفاده می‌کند"
+  },
+  "toastLink": {
+    "message": "بیشتر بدانید ←"
+  },
+  "popupReportInvalid": {
+    "message": "این سایت قابل گزارش نیست."
+  },
+  "popupReportRateLimited": {
+    "message": "گزارش‌های زیاد، بعداً دوباره تلاش کنید."
+  },
+  "toastReportPrompt": {
+    "message": "این سایت هنوز فهرست نشده است."
+  }
+}

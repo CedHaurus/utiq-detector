@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Phát hiện một trang web có sử dụng Utiq, công nghệ theo dõi quảng cáo của các nhà mạng viễn thông, hay không và cảnh báo bạn."
+  },
+  "popupDetected": {
+    "message": "sử dụng Utiq (theo dõi nhà mạng)"
+  },
+  "popupClean": {
+    "message": "không sử dụng Utiq"
+  },
+  "popupUnknown": {
+    "message": "Đang phân tích…"
+  },
+  "popupUnknownSite": {
+    "message": "trang này"
+  },
+  "popupSitesLabel": {
+    "message": "trang"
+  },
+  "popupMoreInfo": {
+    "message": "Tìm hiểu thêm trên Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Từ chối Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Trang này chưa có trong danh sách của chúng tôi.<br><strong>Hãy giúp chúng tôi thêm nó!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Báo cáo trang này"
+  },
+  "popupReporting": {
+    "message": "Đang gửi…"
+  },
+  "popupReported": {
+    "message": "✓ Cảm ơn! Trang này sẽ sớm được thêm vào danh sách."
+  },
+  "popupKnown": {
+    "message": "✓ Trang này đang được thêm vào."
+  },
+  "popupReportError": {
+    "message": "Lỗi, vui lòng thử lại sau giây lát."
+  },
+  "toastTitle": {
+    "message": "Trang này sử dụng Utiq"
+  },
+  "toastLink": {
+    "message": "Tìm hiểu thêm →"
+  },
+  "popupReportInvalid": {
+    "message": "Không thể báo cáo trang này."
+  },
+  "popupReportRateLimited": {
+    "message": "Quá nhiều báo cáo, hãy thử lại sau."
+  },
+  "toastReportPrompt": {
+    "message": "Trang này chưa được liệt kê."
+  }
+}

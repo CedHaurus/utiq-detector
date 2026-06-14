@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "पता लगाता है कि कोई वेबसाइट Utiq — टेलीकॉम ऑपरेटरों की विज्ञापन ट्रैकिंग — का उपयोग करती है या नहीं, और आपको सचेत करता है।"
+  },
+  "popupDetected": {
+    "message": "Utiq का उपयोग करती है (ऑपरेटर ट्रैकिंग)"
+  },
+  "popupClean": {
+    "message": "Utiq का उपयोग नहीं करती"
+  },
+  "popupUnknown": {
+    "message": "विश्लेषण हो रहा है…"
+  },
+  "popupUnknownSite": {
+    "message": "यह साइट"
+  },
+  "popupSitesLabel": {
+    "message": "साइटें"
+  },
+  "popupMoreInfo": {
+    "message": "Utiq Tracker पर अधिक जानकारी →"
+  },
+  "popupOptout": {
+    "message": "Utiq से ऑप्ट आउट करें →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 यह साइट अभी हमारी सूची में नहीं है।<br><strong>इसे जोड़ने में हमारी मदद करें!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "इस साइट की रिपोर्ट करें"
+  },
+  "popupReporting": {
+    "message": "भेजा जा रहा है…"
+  },
+  "popupReported": {
+    "message": "✓ धन्यवाद! यह साइट जल्द ही सूची में जोड़ी जाएगी।"
+  },
+  "popupKnown": {
+    "message": "✓ यह साइट पहले से ही जोड़ी जा रही है।"
+  },
+  "popupReportError": {
+    "message": "त्रुटि, कुछ देर बाद पुनः प्रयास करें।"
+  },
+  "toastTitle": {
+    "message": "यह साइट Utiq का उपयोग करती है"
+  },
+  "toastLink": {
+    "message": "और जानें →"
+  },
+  "popupReportInvalid": {
+    "message": "इस साइट की रिपोर्ट नहीं की जा सकती।"
+  },
+  "popupReportRateLimited": {
+    "message": "बहुत अधिक रिपोर्टें, बाद में पुनः प्रयास करें।"
+  },
+  "toastReportPrompt": {
+    "message": "यह साइट अभी सूचीबद्ध नहीं है।"
+  }
+}

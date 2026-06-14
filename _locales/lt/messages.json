@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Nustato, ar svetainė naudoja Utiq – telekomunikacijų operatorių reklaminį sekimą – ir jus įspėja."
+  },
+  "popupDetected": {
+    "message": "naudoja Utiq (operatoriaus sekimas)"
+  },
+  "popupClean": {
+    "message": "nenaudoja Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analizuojama…"
+  },
+  "popupUnknownSite": {
+    "message": "ši svetainė"
+  },
+  "popupSitesLabel": {
+    "message": "svetainių"
+  },
+  "popupMoreInfo": {
+    "message": "Daugiau informacijos Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Atsisakyti Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Šios svetainės dar nėra mūsų sąraše.<br><strong>Padėkite mums ją įtraukti!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Pranešti apie šią svetainę"
+  },
+  "popupReporting": {
+    "message": "Siunčiama…"
+  },
+  "popupReported": {
+    "message": "✓ Ačiū! Ši svetainė netrukus bus įtraukta į sąrašą."
+  },
+  "popupKnown": {
+    "message": "✓ Ši svetainė jau įtraukiama."
+  },
+  "popupReportError": {
+    "message": "Klaida, pabandykite dar kartą po akimirkos."
+  },
+  "toastTitle": {
+    "message": "Ši svetainė naudoja Utiq"
+  },
+  "toastLink": {
+    "message": "Sužinoti daugiau →"
+  },
+  "popupReportInvalid": {
+    "message": "Šios svetainės pranešti negalima."
+  },
+  "popupReportRateLimited": {
+    "message": "Per daug pranešimų, bandykite vėliau."
+  },
+  "toastReportPrompt": {
+    "message": "Šios svetainės dar nėra sąraše."
+  }
+}

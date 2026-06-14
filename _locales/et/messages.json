@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Tuvastab, kas veebisait kasutab Utiqi, telekomioperaatorite reklaamijälgimist, ja hoiatab teid."
+  },
+  "popupDetected": {
+    "message": "kasutab Utiqi (operaatori jälgimine)"
+  },
+  "popupClean": {
+    "message": "ei kasuta Utiqi"
+  },
+  "popupUnknown": {
+    "message": "Analüüsimine…"
+  },
+  "popupUnknownSite": {
+    "message": "see sait"
+  },
+  "popupSitesLabel": {
+    "message": "saiti"
+  },
+  "popupMoreInfo": {
+    "message": "Lisateave Utiq Trackeris →"
+  },
+  "popupOptout": {
+    "message": "Loobu Utiqist →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Seda saiti pole veel meie loendis.<br><strong>Aidake meil see lisada!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Teata sellest saidist"
+  },
+  "popupReporting": {
+    "message": "Saatmine…"
+  },
+  "popupReported": {
+    "message": "✓ Aitäh! See sait lisatakse peagi loendisse."
+  },
+  "popupKnown": {
+    "message": "✓ See sait on juba lisamisel."
+  },
+  "popupReportError": {
+    "message": "Viga, proovige hetke pärast uuesti."
+  },
+  "toastTitle": {
+    "message": "See sait kasutab Utiqi"
+  },
+  "toastLink": {
+    "message": "Loe lähemalt →"
+  },
+  "popupReportInvalid": {
+    "message": "Seda saiti ei saa teavitada."
+  },
+  "popupReportRateLimited": {
+    "message": "Liiga palju teateid, proovige hiljem uuesti."
+  },
+  "toastReportPrompt": {
+    "message": "Seda saiti pole veel loendis."
+  }
+}

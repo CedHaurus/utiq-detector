@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Detecta si un lloc web utilitza Utiq, el rastreig publicitari dels operadors de telecomunicacions, i t'avisa."
+  },
+  "popupDetected": {
+    "message": "utilitza Utiq (rastreig d'operador)"
+  },
+  "popupClean": {
+    "message": "no utilitza Utiq"
+  },
+  "popupUnknown": {
+    "message": "S'està analitzant…"
+  },
+  "popupUnknownSite": {
+    "message": "aquest lloc"
+  },
+  "popupSitesLabel": {
+    "message": "llocs"
+  },
+  "popupMoreInfo": {
+    "message": "Més informació a Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Dona't de baixa d'Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Aquest lloc encara no és a la nostra llista.<br><strong>Ajuda'ns a referenciar-lo!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Informa d'aquest lloc"
+  },
+  "popupReporting": {
+    "message": "S'està enviant…"
+  },
+  "popupReported": {
+    "message": "✓ Gràcies! Aquest lloc s'afegirà aviat a la llista."
+  },
+  "popupKnown": {
+    "message": "✓ Aquest lloc ja s'està afegint."
+  },
+  "popupReportError": {
+    "message": "Error, torna-ho a provar d'aquí a un moment."
+  },
+  "toastTitle": {
+    "message": "Aquest lloc utilitza Utiq"
+  },
+  "toastLink": {
+    "message": "Més informació →"
+  },
+  "popupReportInvalid": {
+    "message": "Aquest lloc no es pot informar."
+  },
+  "popupReportRateLimited": {
+    "message": "Massa informes, torna-ho a provar més tard."
+  },
+  "toastReportPrompt": {
+    "message": "Aquest lloc encara no està a la llista."
+  }
+}

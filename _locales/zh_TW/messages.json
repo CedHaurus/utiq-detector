@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "偵測網站是否使用電信業者廣告追蹤技術 Utiq，並提醒你。"
+  },
+  "popupDetected": {
+    "message": "使用 Utiq（業者追蹤）"
+  },
+  "popupClean": {
+    "message": "未使用 Utiq"
+  },
+  "popupUnknown": {
+    "message": "分析中…"
+  },
+  "popupUnknownSite": {
+    "message": "此網站"
+  },
+  "popupSitesLabel": {
+    "message": "個網站"
+  },
+  "popupMoreInfo": {
+    "message": "在 Utiq Tracker 上了解更多 →"
+  },
+  "popupOptout": {
+    "message": "退出 Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 此網站尚未列入我們的清單。<br><strong>協助我們收錄它！</strong>"
+  },
+  "popupReportBtn": {
+    "message": "回報此網站"
+  },
+  "popupReporting": {
+    "message": "傳送中…"
+  },
+  "popupReported": {
+    "message": "✓ 謝謝！此網站很快會被加入清單。"
+  },
+  "popupKnown": {
+    "message": "✓ 此網站已在新增中。"
+  },
+  "popupReportError": {
+    "message": "發生錯誤，請稍後再試。"
+  },
+  "toastTitle": {
+    "message": "此網站使用 Utiq"
+  },
+  "toastLink": {
+    "message": "了解更多 →"
+  },
+  "popupReportInvalid": {
+    "message": "無法回報此網站。"
+  },
+  "popupReportRateLimited": {
+    "message": "回報過多，請稍後再試。"
+  },
+  "toastReportPrompt": {
+    "message": "此網站尚未收錄。"
+  }
+}

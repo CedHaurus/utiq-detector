@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Otkriva koristi li web-mjesto Utiq, oglašivačko praćenje telekom operatera, i upozorava vas."
+  },
+  "popupDetected": {
+    "message": "koristi Utiq (praćenje operatera)"
+  },
+  "popupClean": {
+    "message": "ne koristi Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analiziram…"
+  },
+  "popupUnknownSite": {
+    "message": "ovo web-mjesto"
+  },
+  "popupSitesLabel": {
+    "message": "web-mjesta"
+  },
+  "popupMoreInfo": {
+    "message": "Više informacija na Utiq Trackeru →"
+  },
+  "popupOptout": {
+    "message": "Odjavi se s Utiqa →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Ovo web-mjesto još nije na našem popisu.<br><strong>Pomozite nam da ga zabilježimo!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Prijavi ovo web-mjesto"
+  },
+  "popupReporting": {
+    "message": "Slanje…"
+  },
+  "popupReported": {
+    "message": "✓ Hvala! Ovo web-mjesto uskoro će biti dodano na popis."
+  },
+  "popupKnown": {
+    "message": "✓ Ovo web-mjesto već se dodaje."
+  },
+  "popupReportError": {
+    "message": "Pogreška, pokušajte ponovno za trenutak."
+  },
+  "toastTitle": {
+    "message": "Ovo web-mjesto koristi Utiq"
+  },
+  "toastLink": {
+    "message": "Saznajte više →"
+  },
+  "popupReportInvalid": {
+    "message": "Ovo web-mjesto ne može se prijaviti."
+  },
+  "popupReportRateLimited": {
+    "message": "Previše prijava, pokušajte kasnije."
+  },
+  "toastReportPrompt": {
+    "message": "Ovo web-mjesto još nije na popisu."
+  }
+}

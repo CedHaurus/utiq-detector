@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Открива да ли веб-сајт користи Utiq, рекламно праћење телеком оператора, и упозорава вас."
+  },
+  "popupDetected": {
+    "message": "користи Utiq (праћење оператора)"
+  },
+  "popupClean": {
+    "message": "не користи Utiq"
+  },
+  "popupUnknown": {
+    "message": "Анализирам…"
+  },
+  "popupUnknownSite": {
+    "message": "овај сајт"
+  },
+  "popupSitesLabel": {
+    "message": "сајтова"
+  },
+  "popupMoreInfo": {
+    "message": "Више информација на Utiq Tracker-у →"
+  },
+  "popupOptout": {
+    "message": "Одјавите се са Utiq-а →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Овај сајт још увек није на нашој листи.<br><strong>Помозите нам да га забележимо!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Пријави овај сајт"
+  },
+  "popupReporting": {
+    "message": "Слање…"
+  },
+  "popupReported": {
+    "message": "✓ Хвала! Овај сајт ће ускоро бити додат на листу."
+  },
+  "popupKnown": {
+    "message": "✓ Овај сајт се већ додаје."
+  },
+  "popupReportError": {
+    "message": "Грешка, покушајте поново за тренутак."
+  },
+  "toastTitle": {
+    "message": "Овај сајт користи Utiq"
+  },
+  "toastLink": {
+    "message": "Сазнајте више →"
+  },
+  "popupReportInvalid": {
+    "message": "Овај сајт не може да се пријави."
+  },
+  "popupReportRateLimited": {
+    "message": "Превише пријава, покушајте касније."
+  },
+  "toastReportPrompt": {
+    "message": "Овај сајт још није на листи."
+  }
+}

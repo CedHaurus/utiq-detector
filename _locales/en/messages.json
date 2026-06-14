@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Detects whether a website uses Utiq, the telco advertising tracker, and warns you."
+  },
+  "popupDetected": {
+    "message": "uses Utiq (telco tracking)"
+  },
+  "popupClean": {
+    "message": "does not use Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analysing…"
+  },
+  "popupUnknownSite": {
+    "message": "this site"
+  },
+  "popupSitesLabel": {
+    "message": "sites"
+  },
+  "popupMoreInfo": {
+    "message": "More info on Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Opt out of Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 This site is not in our list yet.<br><strong>Help us reference it!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Report this site"
+  },
+  "popupReporting": {
+    "message": "Sending…"
+  },
+  "popupReported": {
+    "message": "✓ Thanks! This site will soon be added to the list."
+  },
+  "popupKnown": {
+    "message": "✓ This site is already being added."
+  },
+  "popupReportError": {
+    "message": "Error, please try again in a moment."
+  },
+  "toastTitle": {
+    "message": "This site uses Utiq"
+  },
+  "toastLink": {
+    "message": "Learn more →"
+  },
+  "popupReportInvalid": {
+    "message": "This site can't be reported."
+  },
+  "popupReportRateLimited": {
+    "message": "Too many reports, try again later."
+  },
+  "toastReportPrompt": {
+    "message": "This site isn't listed yet."
+  }
+}

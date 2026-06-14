@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Mendeteksi apakah sebuah situs menggunakan Utiq, pelacakan iklan operator telekomunikasi, dan memperingatkan Anda."
+  },
+  "popupDetected": {
+    "message": "menggunakan Utiq (pelacakan operator)"
+  },
+  "popupClean": {
+    "message": "tidak menggunakan Utiq"
+  },
+  "popupUnknown": {
+    "message": "Menganalisis…"
+  },
+  "popupUnknownSite": {
+    "message": "situs ini"
+  },
+  "popupSitesLabel": {
+    "message": "situs"
+  },
+  "popupMoreInfo": {
+    "message": "Info selengkapnya di Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Keluar dari Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Situs ini belum ada di daftar kami.<br><strong>Bantu kami mendaftarkannya!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Laporkan situs ini"
+  },
+  "popupReporting": {
+    "message": "Mengirim…"
+  },
+  "popupReported": {
+    "message": "✓ Terima kasih! Situs ini akan segera ditambahkan ke daftar."
+  },
+  "popupKnown": {
+    "message": "✓ Situs ini sudah dalam proses penambahan."
+  },
+  "popupReportError": {
+    "message": "Kesalahan, coba lagi sebentar lagi."
+  },
+  "toastTitle": {
+    "message": "Situs ini menggunakan Utiq"
+  },
+  "toastLink": {
+    "message": "Pelajari lebih lanjut →"
+  },
+  "popupReportInvalid": {
+    "message": "Situs ini tidak dapat dilaporkan."
+  },
+  "popupReportRateLimited": {
+    "message": "Terlalu banyak laporan, coba lagi nanti."
+  },
+  "toastReportPrompt": {
+    "message": "Situs ini belum terdaftar."
+  }
+}

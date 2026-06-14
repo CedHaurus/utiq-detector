@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Registrerer, om et websted bruger Utiq, teleselskabernes reklamesporing, og advarer dig."
+  },
+  "popupDetected": {
+    "message": "bruger Utiq (teleselskabssporing)"
+  },
+  "popupClean": {
+    "message": "bruger ikke Utiq"
+  },
+  "popupUnknown": {
+    "message": "Analyserer…"
+  },
+  "popupUnknownSite": {
+    "message": "dette websted"
+  },
+  "popupSitesLabel": {
+    "message": "websteder"
+  },
+  "popupMoreInfo": {
+    "message": "Mere info på Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Frameld dig Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Dette websted er ikke på vores liste endnu.<br><strong>Hjælp os med at registrere det!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Anmeld dette websted"
+  },
+  "popupReporting": {
+    "message": "Sender…"
+  },
+  "popupReported": {
+    "message": "✓ Tak! Dette websted bliver snart føjet til listen."
+  },
+  "popupKnown": {
+    "message": "✓ Dette websted er allerede ved at blive tilføjet."
+  },
+  "popupReportError": {
+    "message": "Fejl, prøv igen om et øjeblik."
+  },
+  "toastTitle": {
+    "message": "Dette websted bruger Utiq"
+  },
+  "toastLink": {
+    "message": "Læs mere →"
+  },
+  "popupReportInvalid": {
+    "message": "Dette websted kan ikke anmeldes."
+  },
+  "popupReportRateLimited": {
+    "message": "For mange anmeldelser, prøv igen senere."
+  },
+  "toastReportPrompt": {
+    "message": "Dette websted er ikke på listen endnu."
+  }
+}

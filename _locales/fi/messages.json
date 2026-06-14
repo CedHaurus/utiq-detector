@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Tunnistaa, käyttääkö sivusto Utiqia, teleoperaattoreiden mainosseurantaa, ja varoittaa sinua."
+  },
+  "popupDetected": {
+    "message": "käyttää Utiqia (operaattoriseuranta)"
+  },
+  "popupClean": {
+    "message": "ei käytä Utiqia"
+  },
+  "popupUnknown": {
+    "message": "Analysoidaan…"
+  },
+  "popupUnknownSite": {
+    "message": "tämä sivusto"
+  },
+  "popupSitesLabel": {
+    "message": "sivustoa"
+  },
+  "popupMoreInfo": {
+    "message": "Lisätietoja Utiq Trackerissa →"
+  },
+  "popupOptout": {
+    "message": "Kieltäydy Utiqista →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Tätä sivustoa ei ole vielä luettelossamme.<br><strong>Auta meitä lisäämään se!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Ilmoita tämä sivusto"
+  },
+  "popupReporting": {
+    "message": "Lähetetään…"
+  },
+  "popupReported": {
+    "message": "✓ Kiitos! Tämä sivusto lisätään pian luetteloon."
+  },
+  "popupKnown": {
+    "message": "✓ Tätä sivustoa lisätään jo."
+  },
+  "popupReportError": {
+    "message": "Virhe, yritä uudelleen hetken kuluttua."
+  },
+  "toastTitle": {
+    "message": "Tämä sivusto käyttää Utiqia"
+  },
+  "toastLink": {
+    "message": "Lue lisää →"
+  },
+  "popupReportInvalid": {
+    "message": "Tätä sivustoa ei voi ilmoittaa."
+  },
+  "popupReportRateLimited": {
+    "message": "Liian monta ilmoitusta, yritä myöhemmin uudelleen."
+  },
+  "toastReportPrompt": {
+    "message": "Tätä sivustoa ei ole vielä luettelossa."
+  }
+}

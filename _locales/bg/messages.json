@@ -1,0 +1,62 @@
+{
+  "extensionName": {
+    "message": "Utiq Detector"
+  },
+  "extensionDescription": {
+    "message": "Открива дали даден сайт използва Utiq — рекламното проследяване на телеком операторите — и ви предупреждава."
+  },
+  "popupDetected": {
+    "message": "използва Utiq (проследяване от оператор)"
+  },
+  "popupClean": {
+    "message": "не използва Utiq"
+  },
+  "popupUnknown": {
+    "message": "Анализиране…"
+  },
+  "popupUnknownSite": {
+    "message": "този сайт"
+  },
+  "popupSitesLabel": {
+    "message": "сайта"
+  },
+  "popupMoreInfo": {
+    "message": "Повече информация в Utiq Tracker →"
+  },
+  "popupOptout": {
+    "message": "Откажете се от Utiq →"
+  },
+  "popupReportPrompt": {
+    "message": "🔍 Този сайт все още не е в нашия списък.<br><strong>Помогнете ни да го добавим!</strong>"
+  },
+  "popupReportBtn": {
+    "message": "Подайте сигнал за сайта"
+  },
+  "popupReporting": {
+    "message": "Изпращане…"
+  },
+  "popupReported": {
+    "message": "✓ Благодарим! Този сайт скоро ще бъде добавен в списъка."
+  },
+  "popupKnown": {
+    "message": "✓ Този сайт вече се добавя."
+  },
+  "popupReportError": {
+    "message": "Грешка, опитайте отново след малко."
+  },
+  "toastTitle": {
+    "message": "Този сайт използва Utiq"
+  },
+  "toastLink": {
+    "message": "Научете повече →"
+  },
+  "popupReportInvalid": {
+    "message": "Този сайт не може да бъде докладван."
+  },
+  "popupReportRateLimited": {
+    "message": "Твърде много сигнали, опитайте по-късно."
+  },
+  "toastReportPrompt": {
+    "message": "Този сайт все още не е в списъка."
+  }
+}
