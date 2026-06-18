@@ -3,6 +3,13 @@
 Browser extension (Chrome / Chromium + Firefox, Manifest V3) that detects whether a
 site uses **Utiq** — the telecom operators' advertising tracker — and warns the user.
 
+## Install
+
+- **Chrome / Chromium / Edge / Brave** : [Chrome Web Store](https://chromewebstore.google.com/detail/abkbmdfjlfmlonomlbmhgbhkeikpijfl)
+- **Firefox** : [Firefox Add-ons](https://addons.mozilla.org/addon/utiq-detector/)
+
+A browser-detecting install button for both stores is also available on [utiq-tracker.online](https://utiq-tracker.online).
+
 ## Ecosystem — two linked repositories
 
 Utiq Detector is the **browser client** of a two-part project:
