@@ -58,5 +58,26 @@
   },
   "toastReportPrompt": {
     "message": "Ce site n'est pas encore référencé."
+  },
+  "blockedTitle": {
+    "message": "Ce site utilise Utiq"
+  },
+  "blockedDesc": {
+    "message": "Navigation bloquée. Ce site utilise Utiq, le pistage publicitaire au niveau opérateur qui vous identifie à travers le web."
+  },
+  "blockedUnblock": {
+    "message": "Débloquer et continuer"
+  },
+  "blockedBack": {
+    "message": "Revenir en arrière"
+  },
+  "blockedLearnMore": {
+    "message": "En savoir plus sur Utiq →"
+  },
+  "popupBlockToggle": {
+    "message": "Bloquer les sites Utiq"
+  },
+  "popupBlockHint": {
+    "message": "Bloque la navigation vers les sites utilisant Utiq et propose de débloquer."
   }
 }

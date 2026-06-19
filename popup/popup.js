@@ -70,10 +70,11 @@ async function main() {
   const reportDomain = hostname.replace(/^www\./, '');
 
   // State + config
-  const [stateResp, config, cache] = await Promise.all([
+  const [stateResp, config, cache, settings] = await Promise.all([
     sendMessage({ action: 'get_state', tabId: tab ? tab.id : null }),
     sendMessage({ action: 'get_config' }),
-    storageGet('utiq_list_cache')
+    storageGet('utiq_list_cache'),
+    sendMessage({ action: 'get_settings' })
   ]);
 
   const state = (stateResp && stateResp.state) || 'unknown';
@@ -92,6 +93,24 @@ async function main() {
   moreInfoLink.href = trackerUrl + (hostname ? ('?q=' + encodeURIComponent(hostname)) : '');
   optoutLink.textContent = t('popupOptout', 'Opt out of Utiq →');
   optoutLink.href = optoutUrl;
+
+  // Firefox Android only: navigation blocking toggle.
+  if (settings && settings.isAndroid) {
+    const blockToggle   = document.getElementById('block-toggle');
+    const blockLabel    = document.getElementById('block-label');
+    const blockHint     = document.getElementById('block-hint');
+    const blockCheckbox = document.getElementById('block-checkbox');
+
+    blockLabel.textContent = t('popupBlockToggle', 'Block Utiq sites');
+    blockHint.textContent  = t('popupBlockHint',
+      'Blocks navigation to sites using Utiq and shows an unblock prompt.');
+    blockCheckbox.checked  = settings.blockingEnabled !== false;
+    blockToggle.style.display = 'block';
+
+    blockCheckbox.addEventListener('change', () => {
+      sendMessage({ action: 'set_blocking', enabled: blockCheckbox.checked });
+    });
+  }
 
   const isDetected = (state === 'detected' || state === 'detected_net');
 

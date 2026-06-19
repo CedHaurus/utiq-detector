@@ -10,7 +10,39 @@ const OPTOUT_URL    = 'https://utiq-tracker.online/opt-out';
 const REPORT_URL    = 'https://utiq-tracker.online/api/v1/report';
 const CACHE_KEY     = 'utiq_list_cache';
 const REPORTED_KEY  = 'reported_domains';
+const BLOCK_KEY     = 'block_enabled'; // Firefox Android: navigation blocking toggle
 const CACHE_TTL     = 6 * 60 * 60 * 1000; // 6h
+
+/* ---------- Firefox Android: navigation blocking ---------- */
+// On Android the colored toolbar icon is invisible, so the signal becomes an
+// active interstitial that blocks navigation to Utiq sites until the user
+// chooses to unblock. This whole feature is dormant on desktop / Chrome.
+let IS_ANDROID = false;
+let blockingEnabled = true;            // default ON on Android, persisted in storage
+const sessionAllow = new Set();        // hosts unblocked for this session (in-memory)
+
+function baseDomain(host) {
+  return (host || '').toLowerCase().replace(/^www\./, '');
+}
+
+function isUnblocked(host) {
+  host = (host || '').toLowerCase();
+  return sessionAllow.has(host) || sessionAllow.has(baseDomain(host));
+}
+
+function interstitialUrl(originalUrl, host) {
+  return api.runtime.getURL('blocked/blocked.html')
+    + '?url=' + encodeURIComponent(originalUrl || '')
+    + '&host=' + encodeURIComponent(host || '');
+}
+
+// Reactive block (layers 2/3): the page already started loading when Utiq was
+// detected, so we navigate the whole tab to the interstitial.
+function maybeBlockTab(tabId, host, pageUrl) {
+  if (!IS_ANDROID || !blockingEnabled || tabId == null || tabId < 0) return;
+  if (!host || isSelfHost(host) || isUnblocked(host)) return;
+  try { api.tabs.update(tabId, { url: interstitialUrl(pageUrl, host) }); } catch (e) {}
+}
 
 // Network URLs (layer 3) that reveal Utiq.
 const NET_PATTERNS = [
@@ -152,7 +184,7 @@ async function checkTabByUrl(tabId, url) {
   }
 
   // Reset meta for the new navigation.
-  tabMeta[tabId] = { inList: false, detectedBy: null };
+  tabMeta[tabId] = { inList: false, detectedBy: null, url };
 
   // Our own site: always treated as clean, never analysed.
   if (isSelfHost(hostname)) {
@@ -239,6 +271,11 @@ api.webRequest.onBeforeRequest.addListener(
     tabMeta[tabId].detectedBy = 'network';
     setTabState(tabId, 'detected_net');
     sendToTab(tabId, { action: 'utiq_network_detected' });
+    // Android: reactive block (the page is already loading).
+    const pageUrl = tabMeta[tabId].url || '';
+    let pageHost = '';
+    try { pageHost = new URL(pageUrl).hostname; } catch (e) {}
+    maybeBlockTab(tabId, pageHost, pageUrl);
   },
   { urls: ['<all_urls>'] }
 );
@@ -255,6 +292,12 @@ api.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       }
       if (!tabMeta[senderTabId]) tabMeta[senderTabId] = { inList: false, detectedBy: null };
       tabMeta[senderTabId].detectedBy = msg.reason || 'dom';
+      // Android: reactive block on DOM detection.
+      if (sender.tab) {
+        let h = '';
+        try { h = new URL(sender.tab.url).hostname; } catch (e) {}
+        maybeBlockTab(senderTabId, h, sender.tab.url);
+      }
       break;
     }
 
@@ -286,6 +329,27 @@ api.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       submitReport(msg.domain, msg.detectedBy).then(sendResponse);
       return true; // asynchronous response
     }
+
+    // ----- Firefox Android: blocking feature -----
+    case 'get_settings': {
+      sendResponse({ isAndroid: IS_ANDROID, blockingEnabled });
+      return true;
+    }
+
+    case 'set_blocking': {
+      blockingEnabled = !!msg.enabled;
+      api.storage.local.set({ [BLOCK_KEY]: blockingEnabled });
+      sendResponse({ ok: true, blockingEnabled });
+      return true;
+    }
+
+    case 'unblock_navigation': {
+      // Allow this host for the rest of the session, then let the page load.
+      const h = (msg.host || '').toLowerCase();
+      if (h) { sessionAllow.add(h); sessionAllow.add(baseDomain(h)); }
+      sendResponse({ ok: true });
+      return true;
+    }
   }
 });
 
@@ -294,6 +358,49 @@ api.alarms.create('refresh_list', { periodInMinutes: 360 });
 api.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === 'refresh_list') refreshList();
 });
+
+/* ---------- Firefox Android: pre-emptive blocking listener ---------- */
+
+// Async blocking listener (Firefox supports a Promise return on webRequest).
+// Fires for top-level navigations only and blocks Utiq sites known from the
+// centralized list *before* the page loads — the clean, pre-emptive case.
+async function utiqMainFrameBlocker(details) {
+  if (!blockingEnabled || details.type !== 'main_frame' || details.tabId < 0) return {};
+  let host;
+  try { host = new URL(details.url).hostname.toLowerCase().replace(/\.$/, ''); }
+  catch (e) { return {}; }
+  if (isSelfHost(host) || isUnblocked(host)) return {};
+
+  const domains = await getCachedDomains();
+  if (!isKnownDomain(host, domains)) return {};
+
+  // Cancel the request to the Utiq site and send the tab to the interstitial.
+  try { api.tabs.update(details.tabId, { url: interstitialUrl(details.url, host) }); } catch (e) {}
+  return { cancel: true };
+}
+
+async function initPlatform() {
+  try {
+    const info = await api.runtime.getPlatformInfo();
+    IS_ANDROID = !!(info && info.os === 'android');
+  } catch (e) { IS_ANDROID = false; }
+
+  const stored = await api.storage.local.get(BLOCK_KEY);
+  if (typeof stored[BLOCK_KEY] === 'boolean') blockingEnabled = stored[BLOCK_KEY];
+
+  // Register the blocking listener only on Android, where webRequestBlocking
+  // is granted (Firefox build). No-op everywhere else.
+  if (IS_ANDROID) {
+    try {
+      api.webRequest.onBeforeRequest.addListener(
+        utiqMainFrameBlocker,
+        { urls: ['<all_urls>'], types: ['main_frame'] },
+        ['blocking']
+      );
+    } catch (e) { /* blocking not available -> feature silently disabled */ }
+  }
+}
+initPlatform();
 
 // Init: if there is no cache, fetch the list right away.
 (async () => {

@@ -58,5 +58,26 @@
   },
   "toastReportPrompt": {
     "message": "This site isn't listed yet."
+  },
+  "blockedTitle": {
+    "message": "This site uses Utiq"
+  },
+  "blockedDesc": {
+    "message": "Navigation blocked. This site uses Utiq, telco-level advertising tracking that identifies you across the web."
+  },
+  "blockedUnblock": {
+    "message": "Unblock and continue"
+  },
+  "blockedBack": {
+    "message": "Go back to safety"
+  },
+  "blockedLearnMore": {
+    "message": "Learn more about Utiq →"
+  },
+  "popupBlockToggle": {
+    "message": "Block Utiq sites"
+  },
+  "popupBlockHint": {
+    "message": "Blocks navigation to sites using Utiq and shows an unblock prompt."
   }
 }
