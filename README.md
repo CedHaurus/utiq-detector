@@ -1,14 +1,41 @@
-# Utiq Detector
+# Utiq Detector — detect & block Utiq tracking
 
 Browser extension (Chrome / Chromium + Firefox, Manifest V3) that detects whether a
-site uses **Utiq** — the telecom operators' advertising tracker — and warns the user.
+site uses **Utiq** — the telecom operators' advertising tracker (telco / carrier
+tracking) — and warns the user. On **Firefox for Android**, it goes further and can
+**block navigation** to sites that use Utiq.
 
 ## Install
 
 - **Chrome / Chromium / Edge / Brave** : [Chrome Web Store](https://chromewebstore.google.com/detail/abkbmdfjlfmlonomlbmhgbhkeikpijfl)
-- **Firefox** : [Firefox Add-ons](https://addons.mozilla.org/addon/utiq-detector/)
+- **Firefox (desktop & Android)** : [Firefox Add-ons](https://addons.mozilla.org/addon/utiq-detector/)
 
 A browser-detecting install button for both stores is also available on [utiq-tracker.online](https://utiq-tracker.online).
+
+## Block Utiq on Firefox Android 🛡️📱
+
+On mobile, the colored toolbar icon used on desktop is not visible, so Utiq Detector
+turns detection into an **active block**: a full-page warning that stops navigation to
+any site using Utiq.
+
+- 🚫 **Utiq blocker for Firefox Android** — when you open a site that uses Utiq, an
+  interstitial **"This site uses Utiq"** page is shown instead of the page.
+- ✅ **One-tap unblock** — a *Unblock and continue* button lets you load the site
+  anyway; the choice lasts for the current session only (nothing is stored).
+- ⚙️ **Toggle on/off** — a *Block Utiq sites* switch in the popup enables or disables
+  blocking on mobile. It is **on by default on Android**.
+- 🔒 **Mobile-only & private** — the feature is detected via
+  `runtime.getPlatformInfo()` and stays completely inactive on desktop / Chrome. No
+  data is collected.
+
+**How the block works:** known Utiq domains (from the centralized list) are blocked
+*before* the page loads via a blocking `webRequest` listener on top-level navigations;
+sites detected on the fly (DOM / network) are blocked *reactively* by redirecting the
+tab to the same warning page. Implemented in [`background.js`](background.js) and the
+[`blocked/`](blocked/) interstitial page.
+
+> Why block instead of just warn? Utiq identifies you at the **mobile network level**
+> (your carrier), so on a phone it is exactly where stopping it matters most.
 
 ## Ecosystem — two linked repositories
 
@@ -76,7 +103,8 @@ web-ext run
 manifest.json        Manifest V3 (Chrome + Firefox via browser_specific_settings)
 background.js        Service worker — list, icon, network, reporting
 content.js           DOM scan + toast
-popup/               Popup UI (html / css / js)
+popup/               Popup UI (html / css / js) — incl. Firefox Android block toggle
+blocked/             "This site uses Utiq" interstitial (Firefox Android blocking)
 icons/               State PNGs (red/green/gray) + brand icon + generate_icons.py
 _locales/            41 languages (fr, en, de, es, it, pt, nl, pl, … via generate_locales.py)
 build.sh             Builds the Chrome/Firefox packages into dist/
